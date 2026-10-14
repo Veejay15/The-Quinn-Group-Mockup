@@ -165,10 +165,17 @@
   .vcard h3{font-size:30px;font-weight:500;color:var(--navy);}
   .vcard h3 em{font-style:italic;color:var(--gold-deep);}
   .vcard .lead{color:var(--slate);font-size:15.5px;margin-top:10px;}
-  .vcard form{display:grid;gap:20px;margin-top:26px;}
   .vcard .pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
   .vcard .btn{width:100%;margin-top:6px;}
   .vcard .note{margin-top:14px;}
+  .v-step{display:none;}
+  .v-step.on{display:grid;gap:20px;margin-top:26px;}
+  .v-addr{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:14px 16px;background:var(--sand);font-size:15px;color:var(--ink);}
+  .v-addr .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+  .v-addr #v-addr-text{flex:1;font-weight:600;}
+  .v-edit{background:none;border:0;padding:0;font-size:13px;font-weight:600;color:var(--gold-deep);text-decoration:underline;cursor:pointer;min-height:24px;}
+  .v-ask{font-size:15.5px;color:var(--ink);margin:0;}
+  .v-done{font-size:16px;color:var(--ink);padding:18px 18px;background:var(--sand);border-left:2px solid var(--gold);}
 
   /* ---------- listings ---------- */
   .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;}
@@ -516,19 +523,25 @@
     </div>
     <div class="vcard">
       <h3>What's your home <em>worth</em>?</h3>
-      <p class="lead">Tell us where it is. Anne or Sean will prepare a pricing review for your home and walk you through it.</p>
-      <form onsubmit="return false">
-        <div class="fld"><label for="sa">Property address</label><input id="sa" type="text" placeholder="Street address, town"></div>
+      <p class="lead">Just tell us where it is. Anne or Sean will personally prepare a pricing review for your home and get back to you.</p>
+      <form class="v-step on" id="v1" onsubmit="return false">
+        <div class="fld"><label for="sa">Property address</label><input id="sa" type="text" placeholder="Start typing your home's address"></div>
+        <button class="btn gold" type="submit">Get my home's value</button>
+      </form>
+      <form class="v-step" id="v2" onsubmit="return false" aria-live="polite">
+        <div class="v-addr"><span class="k">Your home</span><span id="v-addr-text"></span><button type="button" class="v-edit">Edit</button></div>
+        <p class="v-ask">Where should Anne or Sean send your pricing review?</p>
         <div class="pair">
           <div class="fld"><label for="sn">Name</label><input id="sn" type="text" placeholder="Your name"></div>
           <div class="fld"><label for="sp">Phone</label><input id="sp" type="tel" placeholder="(772) 000-0000"></div>
         </div>
         <div class="fld"><label for="se">Email</label><input id="se" type="email" placeholder="you@email.com"></div>
-        <div class="fld"><label for="st">Timing</label>
-          <select id="st"><option>Thinking about selling in the next 3 months</option><option>In 3&ndash;12 months</option><option>Just curious about value</option></select></div>
-        <button class="btn gold" type="submit">Get my home's value</button>
+        <button class="btn gold" type="submit">Send to Anne &amp; Sean</button>
       </form>
-      <p class="note">No obligation. Anne or Sean will reach out to you personally.</p>
+      <div class="v-step" id="v3" aria-live="polite">
+        <p class="v-done"><strong>Thank you.</strong> Anne or Sean will be in touch personally with your pricing review.</p>
+      </div>
+      <p class="note">No obligation. Your address first, then where to send the review.</p>
     </div>
   </div>
 </section>
@@ -952,6 +965,19 @@
     document.querySelectorAll('.mpanel a').forEach(function(a){a.addEventListener('click',close);});
     document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
     window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>8);},{passive:true});
+
+    // home value: address first, then where to send the review
+    var v1=document.getElementById("v1"),v2=document.getElementById("v2"),v3=document.getElementById("v3"),sa=document.getElementById("sa");
+    var vnote=document.querySelector(".vcard .note");
+    var show=function(el){[v1,v2,v3].forEach(function(s){s.classList.toggle("on",s===el);});vnote.hidden=(el===v3);};
+    var toStep2=function(addr){sa.value=addr;document.getElementById("v-addr-text").textContent=addr||"Your home";show(v2);document.getElementById("sn").focus({preventScroll:true});};
+    v1.addEventListener("submit",function(){toStep2(sa.value.trim());});
+    v2.addEventListener("submit",function(){show(v3);});
+    v2.querySelector(".v-edit").addEventListener("click",function(){show(v1);sa.focus();});
+    document.querySelector("#p-value form").addEventListener("submit",function(){
+      toStep2(document.getElementById("va").value.trim());
+      document.getElementById("sell").scrollIntoView({behavior:"smooth"});
+    });
 
     // hero finder tabs
     var tabs=document.querySelectorAll('.finder .tab');
