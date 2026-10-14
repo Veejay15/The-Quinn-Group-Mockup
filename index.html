@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Quinn Group | Stuart, FL Real Estate Agents</title>
+<meta name="description" content="Anne Warner &amp; Sean Quinn help buyers and sellers in Stuart, Sewall's Point, Jensen Beach &amp; Palm City. Search homes or get your home's value today.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preload" href="fonts/f3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/f5.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/local.css">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%2313284A'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23D8C397' text-anchor='middle'%3EQ%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --navy:#13284A;
+    --ink:#0B1A30;
+    --harbor:#2C4873;
+    --gold:#B8955A;
+    --gold-deep:#8A6A33;
+    --gold-lt:#D8C397;
+    --ivory:#F8F5EF;
+    --sand:#EFE9DE;
+    --line:#DCD3C4;
+    --slate:#5A6372;
+    --white:#FFFFFF;
+    --line-dark:rgba(216,195,151,.22);
+    --serif:'Bodoni Moda',Didot,Georgia,'Times New Roman',serif;
+    --sans:'Manrope','Segoe UI',Arial,sans-serif;
+    --wrap:1240px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ivory);font-family:var(--sans);font-weight:400;color:var(--ink);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  img{display:block;max-width:100%;}
+  a{text-decoration:none;color:inherit;}
+  button,input,select,textarea{font:inherit;color:inherit;}
+  .wrap{width:min(var(--wrap),100% - 48px);margin:0 auto;}
+  :focus-visible{outline:2px solid var(--navy);outline-offset:3px;}
+  .on-dark :focus-visible{outline-color:var(--gold);}
+
+  /* ---------- shared ---------- */
+  .eyebrow{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);}
+  .eyebrow::before{content:"";display:block;width:40px;height:1px;background:var(--gold);margin-bottom:16px;}
+  .eyebrow.center::before{margin-left:auto;margin-right:auto;}
+  .on-dark .eyebrow{color:var(--gold-lt);}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--navy);}
+  .on-dark h1,.on-dark h2,.on-dark h3,.on-dark h4{color:var(--ivory);}
+  h2{font-size:clamp(34px,4.2vw,52px);margin-top:16px;}
+  h1 em,h2 em,h3 em{font-style:italic;color:var(--gold-deep);}
+  .on-dark h1 em,.on-dark h2 em{color:var(--gold);}
+  .sub{color:var(--slate);font-size:18px;max-width:640px;margin-top:18px;}
+  .on-dark .sub{color:#C3CAD6;}
+  .center{text-align:center;}
+  .center .sub{margin-left:auto;margin-right:auto;}
+  .note{font-size:12.5px;color:var(--slate);letter-spacing:.01em;}
+  .on-dark .note{color:#9AA6BA;}
+  .section{padding:clamp(80px,9vw,128px) 0;}
+  .sand{background:var(--sand);}
+  .navy{background:var(--navy);color:var(--ivory);}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.06em;padding:16px 26px;border-radius:2px;background:var(--navy);color:var(--ivory);border:1px solid var(--navy);transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);white-space:nowrap;cursor:pointer;min-height:48px;}
+  .btn:hover{background:var(--harbor);border-color:var(--harbor);}
+  .btn.ghost{background:transparent;color:var(--gold-deep);border-color:var(--gold-deep);}
+  .btn.ghost:hover{background:var(--gold-deep);color:var(--ivory);}
+  .btn.gold{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+  .btn.gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);}
+  .btn.line-light{background:transparent;color:var(--ivory);border-color:rgba(248,245,239,.55);}
+  .btn.line-light:hover{border-color:var(--gold);color:var(--gold-lt);}
+  .link{font-weight:600;font-size:14px;letter-spacing:.04em;color:var(--gold-deep);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease);}
+  .link:hover{gap:12px;}
+  .on-dark .link{color:var(--gold-lt);}
+
+  /* ---------- top bar ---------- */
+  .topbar{background:var(--ink);color:#C3CAD6;font-size:13px;}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:40px;}
+  .topbar a{color:var(--ivory);font-weight:600;}
+  .topbar a:hover{color:var(--gold-lt);}
+  .topbar .phones{display:flex;gap:22px;}
+  .topbar .phones span{color:#9AA6BA;font-weight:500;margin-right:6px;}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:var(--ivory);border-bottom:1px solid var(--line);transition:box-shadow .25s var(--ease);}
+  .nav.scrolled{box-shadow:0 1px 0 var(--line),0 8px 24px rgba(11,26,48,.06);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;height:92px;}
+  .nav .logo img{height:66px;width:auto;}
+  .nav .links{display:flex;align-items:center;gap:34px;}
+  .nav .links a{font-size:14.5px;font-weight:600;letter-spacing:.03em;color:var(--ink);position:relative;padding:6px 0;transition:color .25s var(--ease);}
+  .nav .links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .25s var(--ease);}
+  .nav .links a:hover{color:var(--gold-deep);}
+  .nav .links a:hover::after{width:100%;}
+  .nav .cta{display:flex;align-items:center;gap:14px;}
+  .burger{display:none;width:48px;height:48px;border:1px solid var(--line);background:transparent;border-radius:2px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;}
+  .burger span{display:block;width:20px;height:1.5px;background:var(--navy);}
+  .mpanel{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:min(calc(100vh - 132px),880px);min-height:min(calc(100svh - 132px),880px);display:flex;align-items:center;color:var(--ivory);overflow:hidden;}
+  .hero .bg{position:absolute;inset:0;}
+  .hero .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 62%;}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(11,26,48,.88) 0%,rgba(19,40,74,.72) 42%,rgba(19,40,74,.18) 78%,rgba(19,40,74,.05) 100%);}
+  .hero .wrap{position:relative;z-index:2;padding:72px 0 88px;}
+  .hero .copy{max-width:700px;}
+  .hero h1{font-size:clamp(42px,5.6vw,74px);line-height:1.04;margin-top:18px;color:var(--ivory);}
+  .hero h1 em{color:var(--gold);}
+  .hero .sub{color:#D3D9E2;font-size:19px;max-width:600px;margin-top:22px;}
+
+  .finder{margin-top:38px;max-width:760px;background:var(--ivory);color:var(--ink);border-radius:2px;box-shadow:0 30px 60px rgba(11,26,48,.35);}
+  .finder .tabs{display:flex;border-bottom:1px solid var(--line);}
+  .finder .tab{flex:1;background:transparent;border:0;padding:16px 20px;font-weight:600;font-size:14px;letter-spacing:.05em;color:var(--slate);cursor:pointer;position:relative;min-height:52px;}
+  .finder .tab.on{color:var(--navy);}
+  .finder .tab.on::after{content:"";position:absolute;left:20px;right:20px;bottom:-1px;height:2px;background:var(--gold);}
+  .finder .pane{display:none;padding:22px 22px 20px;}
+  .finder .pane.on{display:block;}
+  .finder .row{display:grid;grid-template-columns:1.7fr 1fr .8fr auto;gap:14px;align-items:end;}
+  .finder .row.two{grid-template-columns:1fr auto;}
+  .fld label{display:block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:6px;}
+  .fld input,.fld select{width:100%;border:0;border-bottom:1px solid var(--slate);background:transparent;padding:10px 0;font-size:16px;color:var(--ink);border-radius:0;appearance:none;-webkit-appearance:none;}
+  .fld select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235A6372' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 4px center;padding-right:22px;cursor:pointer;}
+  .fld input::placeholder{color:#8B93A0;}
+  .fld input:focus,.fld select:focus{outline:none;border-bottom-color:var(--navy);box-shadow:0 1px 0 var(--navy);}
+  .finder .meta{margin-top:14px;font-size:12.5px;color:var(--slate);display:flex;gap:18px;flex-wrap:wrap;}
+  .finder .meta a{color:var(--gold-deep);font-weight:600;}
+
+  /* ---------- intro / team ---------- */
+  .intro .grid{display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(48px,6vw,96px);align-items:center;}
+  .frame{position:relative;}
+  .frame .photo{aspect-ratio:4/5;overflow:hidden;}
+  .frame .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 88%;}
+  .frame .card{position:absolute;z-index:2;right:-36px;bottom:42px;background:var(--sand);padding:24px 28px;max-width:290px;border-left:2px solid var(--gold);}
+  .frame .card .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+  .frame .card .v{font-family:var(--serif);font-size:22px;line-height:1.25;color:var(--navy);margin-top:8px;}
+  .intro p{color:#2A3342;margin-top:18px;max-width:560px;}
+  .intro .quote{margin-top:30px;padding-left:24px;border-left:1px solid var(--gold);font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.45;color:var(--navy);max-width:520px;}
+  .agents{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:36px;max-width:560px;}
+  .agent{display:flex;gap:16px;align-items:center;background:var(--sand);padding:16px 18px;transition:background .25s var(--ease);}
+  .agent:hover{background:#E8E0D2;}
+  .agent img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 18%;flex:none;}
+  .agent .n{font-family:var(--sans);font-weight:700;font-size:16px;color:var(--navy);line-height:1.2;}
+  .agent .p{font-size:13.5px;font-weight:600;color:var(--gold-deep);margin-top:3px;}
+
+  /* ---------- seller band ---------- */
+  .sell .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(48px,6vw,96px);align-items:start;}
+  .steps{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-dark);}
+  .step{padding:24px 24px 24px 0;border-bottom:1px solid var(--line-dark);}
+  .step:nth-child(odd){border-right:1px solid var(--line-dark);}
+  .step:nth-child(even){padding-left:24px;}
+  .step .num{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.06em;}
+  .step h3{font-size:22px;margin-top:6px;}
+  .step p{color:#B9C2D1;font-size:15px;line-height:1.65;margin-top:8px;}
+  .vcard{background:var(--ivory);color:var(--ink);padding:38px 36px 32px;position:relative;}
+  .vcard::before{content:"";position:absolute;left:0;top:0;width:100%;height:3px;background:var(--gold);}
+  .vcard h3{font-size:30px;color:var(--navy);}
+  .vcard h3 em{font-style:italic;color:var(--gold-deep);}
+  .vcard .lead{color:var(--slate);font-size:15.5px;margin-top:10px;}
+  .vcard form{display:grid;gap:20px;margin-top:26px;}
+  .vcard .pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .vcard .btn{width:100%;margin-top:6px;}
+  .vcard .note{margin-top:14px;}
+
+  /* ---------- listings ---------- */
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;}
+  .listings .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px;}
+  .lcard{background:var(--sand);display:flex;flex-direction:column;transition:transform .25s var(--ease);}
+  .lcard:hover{transform:translateY(-3px);}
+  .lcard .ph{aspect-ratio:4/3;overflow:hidden;}
+  .lcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+  .lcard:hover .ph img{transform:scale(1.04);}
+  .lcard .body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;}
+  .lcard .status{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+  .lcard .status.sold{color:var(--slate);}
+  .lcard .price{font-family:var(--serif);font-weight:500;font-size:28px;color:var(--navy);margin-top:6px;line-height:1.1;}
+  .lcard .facts{font-size:14px;color:var(--ink);margin-top:8px;}
+  .lcard .addr{font-size:14px;color:var(--slate);margin-top:4px;line-height:1.5;}
+  .lcard .mls{font-size:11px;color:#8B93A0;margin-top:auto;padding-top:14px;border-top:1px solid var(--line);margin-top:16px;}
+  .listings .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:36px;}
+
+  /* ---------- neighborhoods ---------- */
+  .towns{display:grid;grid-template-columns:repeat(6,1fr);gap:2px;margin-top:52px;}
+  .town{position:relative;overflow:hidden;min-height:330px;display:flex;align-items:flex-end;color:var(--ivory);grid-column:span 2;}
+  .town.wide{grid-column:span 3;min-height:400px;}
+  .town img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+  .town::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,48,0) 22%,rgba(11,26,48,.55) 55%,rgba(11,26,48,.9) 100%);}
+  .town:hover img{transform:scale(1.04);}
+  .town .t{position:relative;z-index:2;padding:26px 28px;}
+  .town .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);}
+  .town h3{font-size:32px;color:var(--ivory);margin-top:6px;}
+  .town p{font-size:14.5px;color:#D3D9E2;margin-top:6px;max-width:380px;line-height:1.55;}
+  .town .link{margin-top:12px;color:var(--gold-lt);}
+  .also{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;margin-top:30px;font-size:14.5px;color:var(--slate);}
+  .also strong{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+  .also a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .25s var(--ease);}
+  .also a:hover{border-color:var(--gold);}
+
+  /* ---------- standard band ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line-dark);}
+  .pillar{padding:36px 36px 8px 0;}
+  .pillar + .pillar{padding-left:36px;border-left:1px solid var(--line-dark);}
+  .pillar .num{font-family:var(--serif);font-size:15px;color:var(--gold);}
+  .pillar h3{font-size:28px;margin-top:10px;}
+  .pillar p{color:#B9C2D1;font-size:16px;margin-top:12px;}
+  .standard .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:48px;}
+
+  /* ---------- reviews ---------- */
+  .revs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
+  .rev{background:var(--sand);padding:36px 34px 30px;display:flex;flex-direction:column;}
+  .rev .mark{font-family:var(--serif);font-size:56px;line-height:.6;color:var(--gold);height:26px;}
+  .rev blockquote{font-family:var(--serif);font-size:22px;line-height:1.5;color:var(--navy);margin-top:14px;flex:1;}
+  .rev .who{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);}
+  .rev .who span{display:block;font-weight:500;letter-spacing:.04em;text-transform:none;color:var(--slate);margin-top:2px;}
+
+  /* ---------- insights ---------- */
+  .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px;}
+  .post{background:var(--ivory);padding:34px 32px 30px;display:flex;flex-direction:column;min-height:330px;transition:background .25s var(--ease);}
+  .post:hover{background:var(--white);}
+  .post .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+  .post h3{font-size:26px;line-height:1.2;margin-top:14px;}
+  .post p{font-size:15px;color:var(--slate);margin-top:14px;flex:1;line-height:1.65;}
+  .post .link{margin-top:22px;}
+
+  /* ---------- faq ---------- */
+  .faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,6vw,96px);align-items:start;}
+  .faq details{border-bottom:1px solid var(--line);}
+  .faq details:first-child{border-top:1px solid var(--line);}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:24px 0;font-family:var(--serif);font-size:22px;color:var(--navy);line-height:1.3;}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--gold-deep);transition:transform .25s var(--ease);flex:none;}
+  .faq details[open] summary::after{transform:rotate(45deg);}
+  .faq details p{color:#2A3342;padding:0 0 26px;max-width:640px;}
+
+  /* ---------- cta band ---------- */
+  .cta-band{text-align:center;}
+  .cta-band h2{max-width:900px;margin-left:auto;margin-right:auto;}
+  .cta-band .row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:40px;}
+
+  /* ---------- contact ---------- */
+  .contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px);align-items:start;}
+  .info{margin-top:34px;display:grid;gap:0;border-top:1px solid var(--line);}
+  .info .r{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .info .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);padding-top:3px;}
+  .info .v{font-size:16px;color:var(--ink);}
+  .info .v a{font-weight:600;}
+  .info .v a:hover{color:var(--gold-deep);}
+  .map{margin-top:30px;position:relative;background:var(--sand);aspect-ratio:16/10;overflow:hidden;}
+  .map svg{width:100%;height:100%;display:block;}
+  .map .tag{position:absolute;left:16px;top:14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);background:var(--ivory);padding:6px 10px;}
+  .form-card{background:var(--white);padding:44px 42px 38px;border-top:3px solid var(--navy);}
+  .form-card h3{font-size:32px;}
+  .form-card .lead{color:var(--slate);margin-top:8px;font-size:15.5px;}
+  .form-card form{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px;margin-top:28px;}
+  .form-card .full{grid-column:1/-1;}
+  .fld textarea{width:100%;border:0;border-bottom:1px solid var(--slate);background:transparent;padding:10px 0;font-size:16px;min-height:96px;resize:vertical;border-radius:0;}
+  .fld textarea:focus{outline:none;border-bottom-color:var(--navy);box-shadow:0 1px 0 var(--navy);}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chips label{position:relative;}
+  .chips input{position:absolute;opacity:0;pointer-events:none;}
+  .chips span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .25s var(--ease),background .25s var(--ease);text-transform:none;letter-spacing:.01em;}
+  .chips input:checked + span{border-color:var(--navy);background:var(--navy);color:var(--ivory);}
+  .chips input:focus-visible + span{outline:2px solid var(--navy);outline-offset:2px;}
+
+  /* ---------- footer ---------- */
+  .footer{background:var(--ink);color:#B9C2D1;padding:84px 0 0;font-size:14.5px;}
+  .footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:40px;}
+  .footer .brand img{height:76px;width:auto;}
+  .footer .brand p{margin-top:20px;max-width:300px;line-height:1.7;}
+  .footer h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:18px;}
+  .footer ul{list-style:none;display:grid;gap:10px;}
+  .footer a:hover{color:var(--ivory);}
+  .footer .social{display:flex;gap:10px;margin-top:22px;}
+  .footer .social a{width:44px;height:44px;border:1px solid rgba(216,195,151,.3);display:flex;align-items:center;justify-content:center;transition:border-color .25s var(--ease);}
+  .footer .social a:hover{border-color:var(--gold);}
+  .footer .social svg{width:18px;height:18px;fill:var(--gold-lt);}
+  .footer .legal{margin-top:64px;padding:30px 0;border-top:1px solid rgba(216,195,151,.16);display:flex;gap:28px;align-items:center;flex-wrap:wrap;}
+  .footer .wp{background:var(--white);padding:10px 14px;}
+  .footer .wp img{height:40px;width:auto;}
+  .footer .eho{display:flex;align-items:center;gap:10px;font-size:12px;line-height:1.3;color:#9AA6BA;}
+  .footer .eho svg{width:34px;height:34px;fill:#9AA6BA;flex:none;}
+  .footer .disc{flex:1;min-width:280px;font-size:12.5px;color:#8B97AA;line-height:1.6;}
+  .footer .bottom{padding:22px 0 30px;border-top:1px solid rgba(216,195,151,.16);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#8B97AA;}
+
+  /* ---------- mobile sticky bar ---------- */
+  .mbar{display:none;}
+
+  /* ---------- reveal (one simple fade) ---------- */
+  .js .reveal{opacity:0;transition:opacity .7s var(--ease);}
+  .js .reveal.in{opacity:1;}
+  .js .reveal.d1{transition-delay:.08s;}.js .reveal.d2{transition-delay:.16s;}.js .reveal.d3{transition-delay:.24s;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1180px){
+    .nav .links{gap:22px;}
+    .nav .links a{font-size:14px;}
+    .listings .cards{grid-template-columns:repeat(2,1fr);}
+    .footer .top{grid-template-columns:1fr 1fr 1fr;}
+    .footer .brand{grid-column:1/-1;}
+  }
+  @media (max-width:980px){
+    .topbar .area{display:none;}
+    .topbar .wrap{justify-content:center;}
+    .nav .links,.nav .cta .btn{display:none;}
+    .burger{display:flex;}
+    .nav .wrap{height:76px;}
+    .nav .logo img{height:54px;}
+    .mpanel{display:flex;position:fixed;inset:0;z-index:60;background:var(--navy);color:var(--ivory);flex-direction:column;padding:28px 24px 32px;transform:translateX(100%);transition:transform .25s var(--ease);visibility:hidden;}
+    .nav.open .mpanel{transform:none;visibility:visible;}
+    .mpanel .close{align-self:flex-end;width:48px;height:48px;background:transparent;border:1px solid rgba(248,245,239,.3);color:var(--ivory);font-size:26px;cursor:pointer;}
+    .mpanel nav{display:grid;margin-top:24px;border-top:1px solid var(--line-dark);}
+    .mpanel nav a{font-family:var(--serif);font-size:30px;padding:16px 0;border-bottom:1px solid var(--line-dark);}
+    .mpanel .calls{margin-top:auto;display:grid;gap:10px;}
+    .mpanel .calls a{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border:1px solid var(--line-dark);font-weight:600;min-height:56px;}
+    .mpanel .calls a span{color:var(--gold-lt);font-weight:500;}
+    .mpanel .btn{margin-top:14px;}
+    .hero{min-height:auto;}
+    .hero .bg::after{background:linear-gradient(180deg,rgba(11,26,48,.78) 0%,rgba(19,40,74,.78) 60%,rgba(11,26,48,.9) 100%);}
+    .hero .wrap{padding:56px 0 64px;}
+    .finder .row{grid-template-columns:1fr 1fr;}
+    .finder .row .fld:first-child{grid-column:1/-1;}
+    .finder .row .btn{grid-column:1/-1;}
+    .finder .row.two{grid-template-columns:1fr;}
+    .intro .grid,.sell .grid,.faq .grid,.contact .grid{grid-template-columns:1fr;}
+    .frame{max-width:560px;}
+    .frame .card{right:16px;bottom:-28px;}
+    .intro .grid > div:last-child{margin-top:20px;}
+    .pillars{grid-template-columns:1fr;}
+    .pillar,.pillar + .pillar{padding:30px 0;border-left:0;border-bottom:1px solid var(--line-dark);}
+    .revs,.posts{grid-template-columns:1fr;}
+    .towns{grid-template-columns:1fr 1fr;}
+    .town,.town.wide{grid-column:span 1;min-height:280px;}
+    .town.wide:first-child{grid-column:1/-1;}
+    .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(11,26,48,.08);}
+    .mbar a{display:flex;align-items:center;justify-content:center;min-height:58px;font-weight:700;font-size:14.5px;letter-spacing:.04em;}
+    .mbar .call{color:var(--navy);border-right:1px solid var(--line);}
+    .mbar .val{background:var(--navy);color:var(--ivory);}
+    body{padding-bottom:58px;}
+  }
+  @media (max-width:620px){
+    body{font-size:17px;}
+    .topbar{font-size:12.5px;}
+    .topbar .phones{gap:14px;}
+    .hero h1{font-size:40px;}
+    .hero .sub{font-size:17px;}
+    .finder .pane{padding:18px 18px 16px;}
+    .finder .tab{font-size:13px;padding:14px 10px;}
+    .steps{grid-template-columns:1fr;}
+    .step,.step:nth-child(even){padding:22px 0;border-right:0;}
+    .step:nth-child(odd){border-right:0;}
+    .vcard{padding:30px 22px 26px;}
+    .vcard .pair{grid-template-columns:1fr;}
+    .listings .cards{grid-template-columns:1fr;}
+    .towns{grid-template-columns:1fr;}
+    .town.wide:first-child{grid-column:auto;}
+    .agents{grid-template-columns:1fr;}
+    .frame .card{position:relative;right:auto;bottom:auto;max-width:none;}
+    .form-card{padding:32px 22px 28px;}
+    .form-card form{grid-template-columns:1fr;}
+    .info .r{grid-template-columns:1fr;gap:4px;}
+    .footer .top{grid-template-columns:1fr 1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important;}
+    .js .reveal{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="area">Stuart &middot; Sewall's Point &middot; Jensen Beach &middot; Palm City &middot; Hobe Sound</div>
+    <div class="phones">
+      <div><span>Sean</span><a href="tel:+17724866883">(772) 486-6883</a></div>
+      <div><span>Anne</span><a href="tel:+17727137223">(772) 713-7223</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="The Quinn Group home"><img src="img/logo-dark.png" alt="Anne &amp; Sean Realtors, like family" width="399" height="177"></a>
+    <nav class="links" aria-label="Main">
+      <a href="#search">Search Homes</a>
+      <a href="#sell">Sell</a>
+      <a href="#neighborhoods">Neighborhoods</a>
+      <a href="#about">About</a>
+      <a href="#insights">Resources</a>
+    </nav>
+    <div class="cta">
+      <a href="#sell" class="btn">What's my home worth?</a>
+      <button class="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mpanel" role="dialog" aria-label="Menu">
+    <button class="close" aria-label="Close menu">&times;</button>
+    <nav aria-label="Mobile">
+      <a href="#search">Search Homes</a>
+      <a href="#sell">Sell</a>
+      <a href="#neighborhoods">Neighborhoods</a>
+      <a href="#about">About</a>
+      <a href="#insights">Resources</a>
+    </nav>
+    <div class="calls">
+      <a href="tel:+17724866883">Call Sean <span>(772) 486-6883</span></a>
+      <a href="tel:+17727137223">Call Anne <span>(772) 713-7223</span></a>
+      <a href="#sell" class="btn gold">What's my home worth?</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero on-dark" id="search">
+  <div class="bg"><img src="img/hero.jpg" alt="Aerial view of Hutchinson Island beachfront homes and the Indian River at sunset" fetchpriority="high"></div>
+  <div class="wrap">
+    <div class="copy">
+      <div class="eyebrow">Anne Warner &amp; Sean Quinn &middot; REALTORS&reg;</div>
+      <h1>Stuart, FL real estate agents who treat you <em>like family</em>.</h1>
+      <p class="sub">Concierge-level care, held to the standard Sean learned at the U.S. Naval Academy. Search every listing on the Treasure Coast here, or start with what your home is worth.</p>
+    </div>
+    <div class="finder">
+      <div class="tabs" role="tablist">
+        <button class="tab on" role="tab" aria-selected="true" data-p="p-search">Search homes</button>
+        <button class="tab" role="tab" aria-selected="false" data-p="p-value">What's my home worth?</button>
+      </div>
+      <div class="pane on" id="p-search" role="tabpanel">
+        <form class="row" onsubmit="return false">
+          <div class="fld"><label for="q">Location</label><input id="q" type="text" placeholder="City, neighborhood, address or MLS #"></div>
+          <div class="fld"><label for="pr">Price</label>
+            <select id="pr"><option>Any price</option><option>Under $500K</option><option>$500K &ndash; $1M</option><option>$1M &ndash; $2M</option><option>$2M &ndash; $5M</option><option>$5M+</option></select></div>
+          <div class="fld"><label for="bd">Beds</label>
+            <select id="bd"><option>Any</option><option>2+</option><option>3+</option><option>4+</option><option>5+</option></select></div>
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="meta"><span>Every MLS listing, updated daily. Save searches and get new-listing alerts.</span><a href="#neighborhoods">Browse by town &rarr;</a></div>
+      </div>
+      <div class="pane" id="p-value" role="tabpanel">
+        <form class="row two" onsubmit="return false">
+          <div class="fld"><label for="va">Property address</label><input id="va" type="text" placeholder="Start typing your home's address"></div>
+          <button class="btn" type="submit">Get my home's value</button>
+        </form>
+        <div class="meta"><span>A personal pricing review from Anne or Sean, based on what has sold near you.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO / TEAM ============ -->
+<section class="intro section" id="about">
+  <div class="wrap grid">
+    <div class="frame">
+      <div class="photo"><img src="img/team.jpg" alt="Sean Quinn and Anne Warner, Stuart FL REALTORS, on a waterfront boardwalk" loading="lazy"></div>
+      <div class="card">
+        <div class="k">Second generation</div>
+        <div class="v">Sean's family has a long history in Martin County real estate.</div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Meet the team</div>
+      <h2>Anne and Sean, <em>by name</em>.</h2>
+      <p>Sean grew up in Palm City and is a second-generation Martin County agent. He graduated from the U.S. Naval Academy, served seven years as a Surface Warfare Officer, and worked in management consulting before real estate.</p>
+      <p>Anne gives every client concierge-level service: market analysis, strategic pricing, negotiation and careful contract management, with boutique marketing plans for sellers. Her clients say she treats them like family, and she does.</p>
+      <div class="quote">Bringing professionalism back to real estate, one transaction at a time.</div>
+      <div class="agents">
+        <a class="agent" href="tel:+17724866883"><img src="img/sean.jpg" alt="Sean Quinn" loading="lazy"><div><div class="n">Sean Quinn</div><div class="p">(772) 486-6883</div></div></a>
+        <a class="agent" href="tel:+17727137223"><img src="img/anne.jpg" alt="Anne Warner" loading="lazy"><div><div class="n">Anne Warner</div><div class="p">(772) 713-7223</div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELLERS ============ -->
+<section class="sell section navy on-dark" id="sell">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">For sellers</div>
+      <h2>Before we talk price, let's look at <em>your street</em>.</h2>
+      <p class="sub">An online estimate is a starting point. A price you can sell at comes from what has actually sold near you, what's competing right now, and how your home shows. Here is how we get there with you.</p>
+      <div class="steps">
+        <div class="step"><div class="num">01</div><h3>Walk-through</h3><p>We see the home in person and listen to your timing and plans.</p></div>
+        <div class="step"><div class="num">02</div><h3>Pricing study</h3><p>Recent sales, active competition and condition, with the reasoning shown.</p></div>
+        <div class="step"><div class="num">03</div><h3>Prep &amp; marketing</h3><p>A boutique marketing plan, from photography to the right buyers.</p></div>
+        <div class="step"><div class="num">04</div><h3>Offer to closing</h3><p>Negotiation, inspections, contracts and closing, handled in order.</p></div>
+      </div>
+    </div>
+    <div class="vcard">
+      <h3>What's your home <em>worth</em>?</h3>
+      <p class="lead">Tell us where it is. Anne or Sean will prepare a pricing review for your home and walk you through it.</p>
+      <form onsubmit="return false">
+        <div class="fld"><label for="sa">Property address</label><input id="sa" type="text" placeholder="Street address, town"></div>
+        <div class="pair">
+          <div class="fld"><label for="sn">Name</label><input id="sn" type="text" placeholder="Your name"></div>
+          <div class="fld"><label for="sp">Phone</label><input id="sp" type="tel" placeholder="(772) 000-0000"></div>
+        </div>
+        <div class="fld"><label for="se">Email</label><input id="se" type="email" placeholder="you@email.com"></div>
+        <div class="fld"><label for="st">Timing</label>
+          <select id="st"><option>Thinking about selling in the next 3 months</option><option>In 3&ndash;12 months</option><option>Just curious about value</option></select></div>
+        <button class="btn gold" type="submit">Get my home's value</button>
+      </form>
+      <p class="note">No obligation. Anne or Sean will reach out to you personally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LISTINGS ============ -->
+<section class="listings section">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">From our portfolio</div>
+        <h2>Homes we've <em>listed and sold</em>.</h2>
+      </div>
+      <a href="#search" class="btn ghost">Search all homes</a>
+    </div>
+    <div class="cards">
+      <a class="lcard" href="#">
+        <div class="ph"><img src="img/ls-pelican.jpg" alt="Aerial of the Indian River and a long private dock at Pelican Pointe, Hutchinson Island" loading="lazy"></div>
+        <div class="body">
+          <div class="status">For sale &middot; Hutchinson Island</div>
+          <div class="price">$1,195,000</div>
+          <div class="facts">Homesite &middot; Deeded boat slip</div>
+          <div class="addr">7671 Pelican Pointe Drive</div>
+          <div class="mls">Listed by Water Pointe Realty Group</div>
+        </div>
+      </a>
+      <a class="lcard" href="#">
+        <div class="ph"><img src="img/ls-silverpine.jpg" alt="Living and dining room of a single-story villa in Pine Ridge at Martin, Palm City" loading="lazy"></div>
+        <div class="body">
+          <div class="status">For sale &middot; Palm City</div>
+          <div class="price">$325,000</div>
+          <div class="facts">2 bd &middot; 2 ba &middot; 1,170 sq ft</div>
+          <div class="addr">1544 SW Silver Pine Way 104F</div>
+          <div class="mls">Listed by Water Pointe Realty Group</div>
+        </div>
+      </a>
+      <a class="lcard" href="#">
+        <div class="ph"><img src="img/ls-copaire.jpg" alt="Key West-style home with a front porch under oak trees in Sewall's Point" loading="lazy"></div>
+        <div class="body">
+          <div class="status sold">Sold &middot; Sewall's Point</div>
+          <div class="price">$1,550,000</div>
+          <div class="facts">4 bd &middot; 3 ba &middot; 2,502 sq ft</div>
+          <div class="addr">10 Copaire Road</div>
+          <div class="mls">Listed by Water Pointe Realty Group</div>
+        </div>
+      </a>
+      <a class="lcard" href="#">
+        <div class="ph"><img src="img/ls-hillcrest.jpg" alt="Single-story home with a metal roof and palms in Sewall's Point" loading="lazy"></div>
+        <div class="body">
+          <div class="status sold">Sold &middot; Sewall's Point</div>
+          <div class="price">$1,619,000</div>
+          <div class="facts">3 bd &middot; 3 ba &middot; 2,663 sq ft</div>
+          <div class="addr">121 Hillcrest Drive</div>
+          <div class="mls">Listed by Water Pointe Realty Group</div>
+        </div>
+      </a>
+    </div>
+    <div class="foot">
+      <p class="note">Shown from the team's current portfolio for layout. At launch this row pulls live from the MLS. Information deemed reliable but not guaranteed.</p>
+      <a href="#search" class="link">See every Treasure Coast listing &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEIGHBORHOODS ============ -->
+<section class="hoods section sand" id="neighborhoods">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">Neighborhoods</div>
+        <h2>Know the coast, <em>town by town</em>.</h2>
+        <p class="sub">Every town on the Treasure Coast prices differently, and so do the streets inside it. Start with the guide, then search the homes.</p>
+      </div>
+    </div>
+    <div class="towns">
+      <a class="town wide" href="#">
+        <img src="img/nb-sewalls-point.jpg" alt="Waterfront homes with private docks along a canal in Sewall's Point" loading="lazy">
+        <div class="t"><div class="k">Waterfront peninsula</div><h3>Sewall's Point</h3><p>Homes between the St. Lucie and Indian rivers, many with deep-water docks.</p><span class="link">Sewall's Point homes for sale &rarr;</span></div>
+      </a>
+      <a class="town wide" href="#">
+        <img src="img/nb-stuart.jpg" alt="Aerial view of downtown Stuart, the water tower and the St. Lucie River" loading="lazy">
+        <div class="t"><div class="k">Downtown &amp; riverfront</div><h3>Stuart</h3><p>The Riverwalk, downtown and the St. Lucie River, from condos to estates.</p><span class="link">Stuart homes for sale &rarr;</span></div>
+      </a>
+      <a class="town" href="#">
+        <img src="img/nb-jensen-beach.jpg" alt="Aerial view of the Jensen Beach coastline and beachfront buildings" loading="lazy">
+        <div class="t"><div class="k">Beach &amp; river</div><h3>Jensen Beach</h3><p>Mainland, waterfront and island markets in one ZIP code.</p><span class="link">Jensen Beach homes &rarr;</span></div>
+      </a>
+      <a class="town" href="#">
+        <img src="img/ls-bicopa.jpg" alt="Single-story Palm City home with a paver drive and palms" loading="lazy">
+        <div class="t"><div class="k">West of the river</div><h3>Palm City</h3><p>Gated golf communities, and acreage out in Palm City Farms.</p><span class="link">Palm City homes &rarr;</span></div>
+      </a>
+      <a class="town" href="#">
+        <img src="img/nb-hobe-sound.jpg" alt="Aerial view of a Hobe Sound neighborhood with lakes and the ocean beyond" loading="lazy">
+        <div class="t"><div class="k">South Martin County</div><h3>Hobe Sound</h3><p>Quiet, green streets a short drive from the beach.</p><span class="link">Hobe Sound homes &rarr;</span></div>
+      </a>
+    </div>
+    <div class="also">
+      <strong>Also serving</strong>
+      <a href="#">Hutchinson Island</a><a href="#">Rocky Point</a><a href="#">Port Salerno</a><a href="#">Jupiter</a><a href="#">Tequesta</a><a href="#">Port St. Lucie</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE STANDARD ============ -->
+<section class="standard section navy on-dark">
+  <div class="wrap">
+    <div class="eyebrow">Why Anne &amp; Sean</div>
+    <h2>Like family, <em>held to a standard</em>.</h2>
+    <p class="sub">Two halves of the same promise: the care of people who treat you as their own, and the discipline of a team that does the details properly.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="num">01</div><h3>Local, twice over</h3><p>Sean grew up in Palm City and comes from a family with a long history in Martin County real estate. He knows the waterways, neighborhoods and schools first-hand.</p></div>
+      <div class="pillar"><div class="num">02</div><h3>Annapolis standards</h3><p>A U.S. Naval Academy graduate and seven-year Surface Warfare Officer, Sean brings preparation, integrity and follow-through to every contract.</p></div>
+      <div class="pillar"><div class="num">03</div><h3>Concierge, start to close</h3><p>Anne handles the details that decide an outcome: pricing, negotiation, contracts and the trusted local contacts you need to move in.</p></div>
+    </div>
+    <div class="cta-row">
+      <a href="#sell" class="btn gold">What's my home worth?</a>
+      <a href="#contact" class="btn line-light">Talk to Anne &amp; Sean</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews section">
+  <div class="wrap">
+    <div class="eyebrow center">Client stories</div>
+    <h2 class="center">In their <em>own words</em>.</h2>
+    <div class="revs">
+      <figure class="rev">
+        <div class="mark">&ldquo;</div>
+        <blockquote>Anne went above and beyond when it came to finding my perfect home. I truly felt taken care of; she treated me as though I were family.</blockquote>
+        <figcaption class="who">Haylee R.<span>Buyer</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="mark">&ldquo;</div>
+        <blockquote>Sean is an excellent Realtor. His professionalism and market expertise really stand out. He is a hard worker and willing to go the extra mile.</blockquote>
+        <figcaption class="who">Sarah B.<span>Client</span></figcaption>
+      </figure>
+      <figure class="rev">
+        <div class="mark">&ldquo;</div>
+        <blockquote>Anne and Sean are what I call premier professionals. Communication was on par. Any contingency was addressed fully.</blockquote>
+        <figcaption class="who">Michael G.<span>Client</span></figcaption>
+      </figure>
+    </div>
+    <p class="note center" style="margin-top:24px">Testimonials from the current website. At launch this section can show the live Google rating and reviews.</p>
+  </div>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section class="insights section sand" id="insights">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">Market guides</div>
+        <h2>Read before you <em>list or buy</em>.</h2>
+        <p class="sub">Written by Anne and Sean about the things that change what a home really costs, street by street.</p>
+      </div>
+      <a href="#" class="btn ghost">All market guides</a>
+    </div>
+    <div class="posts">
+      <a class="post" href="#">
+        <div class="k">Sewall's Point &middot; Sellers &amp; buyers</div>
+        <h3>The Sewer Clock Hiding Inside a South Sewall's Point Listing</h3>
+        <p>South Sewall's Point is mid-conversion from septic to sewer. Here's how the phase, street, and a 365-day state statute can change what a home actually costs you after closing.</p>
+        <span class="link">Read the guide &rarr;</span>
+      </a>
+      <a class="post" href="#">
+        <div class="k">Jensen Beach &middot; Pricing</div>
+        <h3>Jensen Beach Home Prices Across 3 Distinct Markets</h3>
+        <p>Home prices vary across mainland, waterfront and Nettles Island tiers. See what shapes each market before you compare listings.</p>
+        <span class="link">Read the guide &rarr;</span>
+      </a>
+      <a class="post" href="#">
+        <div class="k">Palm City Farms &middot; Land</div>
+        <h3>Palm City Farms Acreage: What Drives Land Value</h3>
+        <p>Land value hinges on more than price per acre. Zoning, access, wetlands and septic all affect what you're actually buying.</p>
+        <span class="link">Read the guide &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq section">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">Questions</div>
+      <h2>Straight <em>answers</em>.</h2>
+      <p class="sub">If yours isn't here, call either of us. That's what we're for.</p>
+    </div>
+    <div>
+      <details open>
+        <summary>What is my home worth in today's market?</summary>
+        <p>An online estimate is a starting point. We look at recent sales on your street, what's competing right now and your home's condition, then walk you through a price range and the reasoning behind it.</p>
+      </details>
+      <details>
+        <summary>Can I search every listing here, like on Zillow?</summary>
+        <p>Yes. The search on this site covers every MLS listing on the Treasure Coast, with saved searches and new-listing alerts. And when you have a question about a home, you reach Anne or Sean directly.</p>
+      </details>
+      <details>
+        <summary>Can you sell my home if I live out of state?</summary>
+        <p>Yes. Many Treasure Coast owners are seasonal or have already moved. We coordinate access, vendors, showings and closing paperwork so you don't need to be here for every step.</p>
+      </details>
+      <details>
+        <summary>I'm buying with a VA loan. Can you help?</summary>
+        <p>Yes. Sean is a Naval Academy graduate and Navy veteran, and we've written a guide to using a VA loan in Stuart and nearby areas. We'll walk you through what VA buyers should expect from offer to closing.</p>
+      </details>
+      <details>
+        <summary>Which areas do you cover?</summary>
+        <p>Our home market is Martin County, with Stuart, Sewall's Point, Jensen Beach, Palm City and Hobe Sound at its center. We also serve St. Lucie, Palm Beach and Indian River counties.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band section navy on-dark">
+  <div class="wrap">
+    <div class="eyebrow center">Start here</div>
+    <h2>Selling, buying or just curious? <em>Start with a conversation</em>.</h2>
+    <div class="row">
+      <a href="#sell" class="btn gold">What's my home worth?</a>
+      <a href="tel:+17724866883" class="btn line-light">Call Sean &middot; (772) 486-6883</a>
+      <a href="tel:+17727137223" class="btn line-light">Call Anne &middot; (772) 713-7223</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact section" id="contact">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Visit us in <em>Stuart</em>.</h2>
+      <div class="info">
+        <div class="r"><div class="k">Office</div><div class="v">3727 SE Ocean Blvd, Suite 100<br>Stuart, FL 34996</div></div>
+        <div class="r"><div class="k">Sean Quinn</div><div class="v"><a href="tel:+17724866883">(772) 486-6883</a></div></div>
+        <div class="r"><div class="k">Anne Warner</div><div class="v"><a href="tel:+17727137223">(772) 713-7223</a></div></div>
+        <div class="r"><div class="k">Email</div><div class="v"><a href="mailto:anneandsean@waterpointe.com">anneandsean@waterpointe.com</a></div></div>
+        <div class="r"><div class="k">Brokerage</div><div class="v">Water Pointe Realty Group</div></div>
+      </div>
+      <div class="map" aria-label="Stylized map of the Treasure Coast">
+        <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map showing Jensen Beach, Sewall's Point, Stuart, Palm City and Hobe Sound">
+          <rect width="640" height="400" fill="#EFE9DE"/>
+          <path d="M470 0 C 455 70, 462 140, 448 210 C 436 270, 440 330, 430 400 L 640 400 L 640 0 Z" fill="#C9D3E0"/>
+          <path d="M430 0 C 418 80, 424 150, 410 220 C 400 280, 402 340, 394 400 L 404 400 C 412 340, 412 282, 422 222 C 436 150, 430 80, 442 0 Z" fill="#DCD3C4"/>
+          <path d="M392 0 C 380 70, 392 120, 372 170 C 352 214, 300 226, 230 236 C 170 244, 120 238, 60 250 L 60 266 C 122 254, 172 262, 234 252 C 310 240, 366 226, 388 180 C 406 140, 398 80, 408 0 Z" fill="#C9D3E0"/>
+          <g fill="none" stroke="#B8955A" stroke-width="1" stroke-dasharray="3 5" opacity=".7"><path d="M60 330 C 200 320, 300 300, 400 270"/></g>
+          <g font-family="Manrope, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.6" fill="#13284A">
+            <g transform="translate(372 92)"><circle r="6" fill="#13284A"/><text x="12" y="4">JENSEN BEACH</text></g>
+            <g transform="translate(398 196)"><circle r="6" fill="#13284A"/><text x="-130" y="-12">SEWALL'S POINT</text></g>
+            <g transform="translate(318 214)"><circle r="9" fill="#B8955A" stroke="#13284A" stroke-width="2"/><text x="-56" y="30">STUART</text></g>
+            <g transform="translate(150 292)"><circle r="6" fill="#13284A"/><text x="12" y="4">PALM CITY</text></g>
+            <g transform="translate(372 360)"><circle r="6" fill="#13284A"/><text x="-112" y="4">HOBE SOUND</text></g>
+          </g>
+          <text x="560" y="200" font-family="Bodoni Moda, Georgia, serif" font-style="italic" font-size="18" fill="#2C4873" text-anchor="middle">Atlantic</text>
+        </svg>
+        <div class="tag">Stylized map &middot; live Google Map at launch</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Send Anne &amp; Sean a note</h3>
+      <p class="lead">Tell us a little about what you're planning. One of us will reply personally.</p>
+      <form onsubmit="return false">
+        <div class="fld"><label for="cn">Name</label><input id="cn" type="text" placeholder="Your name"></div>
+        <div class="fld"><label for="cp">Phone</label><input id="cp" type="tel" placeholder="(772) 000-0000"></div>
+        <div class="fld full"><label for="ce">Email</label><input id="ce" type="email" placeholder="you@email.com"></div>
+        <div class="fld full"><label>I'm looking to</label>
+          <div class="chips">
+            <label><input type="radio" name="int" checked><span>Sell</span></label>
+            <label><input type="radio" name="int"><span>Buy</span></label>
+            <label><input type="radio" name="int"><span>Sell &amp; buy</span></label>
+            <label><input type="radio" name="int"><span>Something else</span></label>
+          </div>
+        </div>
+        <div class="fld full"><label for="cm">Message</label><textarea id="cm" placeholder="The town, the timing, or the question on your mind"></textarea></div>
+        <div class="full"><button class="btn" type="submit" style="width:100%">Send to Anne &amp; Sean</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <img src="img/logo-light.png" alt="Anne &amp; Sean Realtors, like family" width="399" height="177" loading="lazy">
+        <p>The Quinn Group &amp; Anne Warner Realtor. Treasure Coast real estate, guided like family.</p>
+        <div class="social">
+          <a href="https://www.instagram.com/seanquinn94/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1zM21.9 7a5.4 5.4 0 0 0-1.5-3.8A5.4 5.4 0 0 0 16.6 1.7C15.1 1.6 8.9 1.6 7.4 1.7a5.4 5.4 0 0 0-3.8 1.5A5.4 5.4 0 0 0 2.1 7c-.1 1.5-.1 7.7 0 9.2a5.4 5.4 0 0 0 1.5 3.8 5.4 5.4 0 0 0 3.8 1.5c1.5.1 7.7.1 9.2 0a5.4 5.4 0 0 0 3.8-1.5 5.4 5.4 0 0 0 1.5-3.8c.1-1.5.1-7.7 0-9.2zM20 18a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4A3 3 0 0 1 6 18c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3A3 3 0 0 1 7.7 5.7c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4A3 3 0 0 1 20 7.4c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
+          <a href="https://www.linkedin.com/in/seanquinnwaterpointe/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.5 6a2.5 2.5 0 0 1 2.48-2.5zM3 8.98h4v12H3zm7 0h3.8v1.7h.1a4.2 4.2 0 0 1 3.8-2c4 0 4.8 2.7 4.8 6.1v6.2h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6h-4z"/></svg></a>
+          <a href="https://www.youtube.com/channel/UCUhGCrQ4pnRddK6usImxtOg" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15V9l5.8 3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Search</h4>
+        <ul><li><a href="#search">All homes for sale</a></li><li><a href="#neighborhoods">Sewall's Point</a></li><li><a href="#neighborhoods">Stuart</a></li><li><a href="#neighborhoods">Jensen Beach</a></li><li><a href="#neighborhoods">Palm City</a></li><li><a href="#neighborhoods">Hobe Sound</a></li></ul>
+      </div>
+      <div>
+        <h4>Sell</h4>
+        <ul><li><a href="#sell">What's my home worth?</a></li><li><a href="#sell">Our selling process</a></li><li><a href="#insights">Seller's guide</a></li></ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul><li><a href="#about">Meet Anne &amp; Sean</a></li><li><a href="#">Client stories</a></li><li><a href="#insights">Market guides</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div>
+        <h4>Office</h4>
+        <ul><li>3727 SE Ocean Blvd, Suite 100</li><li>Stuart, FL 34996</li><li><a href="tel:+17724866883">Sean &middot; (772) 486-6883</a></li><li><a href="tel:+17727137223">Anne &middot; (772) 713-7223</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <div class="wp"><img src="img/waterpointe.png" alt="Water Pointe Realty Group" width="2272" height="834" loading="lazy"></div>
+      <div class="eho">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 3 20h5v24h32V20h5zM36 40H12V20.6L24 11l12 9.6zM16 26h16v4H16zm0 7h16v4H16z"/></svg>
+        <span>Equal Housing<br>Opportunity</span>
+      </div>
+      <p class="disc">The Quinn Group &amp; Anne Warner Realtor are REALTORS&reg; with Water Pointe Realty Group. All information is deemed reliable but not guaranteed and should be independently reviewed and verified.</p>
+    </div>
+    <div class="bottom">
+      <span>&copy; 2026 The Quinn Group &amp; Anne Warner Realtor. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms</a> &nbsp;&middot;&nbsp; <a href="#">Accessibility</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE STICKY BAR ============ -->
+<div class="mbar">
+  <a href="tel:+17724866883" class="call">Call us</a>
+  <a href="#sell" class="val">Home value</a>
+</div>
+
+<script>
+  (function(){
+    var nav=document.querySelector('.nav');
+    var open=function(){nav.classList.add('open');document.body.style.overflow='hidden';};
+    var close=function(){nav.classList.remove('open');document.body.style.overflow='';};
+    document.querySelector('.burger').addEventListener('click',open);
+    document.querySelector('.mpanel .close').addEventListener('click',close);
+    document.querySelectorAll('.mpanel a').forEach(function(a){a.addEventListener('click',close);});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>8);},{passive:true});
+
+    // hero finder tabs
+    var tabs=document.querySelectorAll('.finder .tab');
+    tabs.forEach(function(t){t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false');});
+      document.querySelectorAll('.finder .pane').forEach(function(p){p.classList.remove('on');});
+      t.classList.add('on');t.setAttribute('aria-selected','true');
+      document.getElementById(t.dataset.p).classList.add('on');
+    });});
+
+    // one simple fade on scroll, staggered within each group
+    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.pillar','.rev','.post','.faq details','.form-card'];
+    groups.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){
+      el.classList.add('reveal');if(i%4)el.classList.add('d'+(i%4));
+    });});
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(entries){entries.forEach(function(e){
+      if(e.isIntersecting){var t=e.target;t.classList.add('in');io.unobserve(t);
+        setTimeout(function(){t.classList.remove('reveal','d1','d2','d3');},1200);}
+    });},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>
