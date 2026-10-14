@@ -45,7 +45,8 @@
   .eyebrow::before{content:"";display:block;width:40px;height:1px;background:var(--gold);margin-bottom:16px;}
   .eyebrow.center::before{margin-left:auto;margin-right:auto;}
   .on-dark .eyebrow{color:var(--gold-lt);}
-  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.01em;color:var(--navy);}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:-.01em;color:var(--navy);font-variation-settings:"opsz" 28;}
+  h3,h4,.rev blockquote,.frame .card .v,.intro .quote,.lcard .price,.mpanel nav a{font-variation-settings:"opsz" 11;}
   .on-dark h1,.on-dark h2,.on-dark h3,.on-dark h4{color:var(--ivory);}
   h2{font-size:clamp(34px,4.2vw,52px);margin-top:16px;}
   h1 em,h2 em,h3 em{font-style:italic;color:var(--gold-deep);}
@@ -60,14 +61,24 @@
   .sand{background:var(--sand);}
   .navy{background:var(--navy);color:var(--ivory);}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.06em;padding:16px 26px;border-radius:2px;background:var(--navy);color:var(--ivory);border:1px solid var(--navy);transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);white-space:nowrap;cursor:pointer;min-height:48px;}
-  .btn:hover{background:var(--harbor);border-color:var(--harbor);}
-  .btn.ghost{background:transparent;color:var(--gold-deep);border-color:var(--gold-deep);}
-  .btn.ghost:hover{background:var(--gold-deep);color:var(--ivory);}
-  .btn.gold{background:var(--gold);color:var(--navy);border-color:var(--gold);}
-  .btn.gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);}
-  .btn.line-light{background:transparent;color:var(--ivory);border-color:rgba(248,245,239,.55);}
-  .btn.line-light:hover{border-color:var(--gold);color:var(--gold-lt);}
+  .btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:14px;font-family:var(--sans);font-weight:600;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;padding:19px 34px;min-height:56px;border-radius:0;color:var(--ivory);border:1px solid var(--navy);background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 0/0% 100%,var(--navy);box-shadow:0 12px 26px -14px rgba(11,26,48,.65);transition:background-size .5s var(--ease),color .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);white-space:nowrap;cursor:pointer;}
+  .btn::before{content:"";position:absolute;inset:4px;border:1px solid rgba(216,195,151,.5);pointer-events:none;transition:inset .35s var(--ease),border-color .35s var(--ease);}
+  .btn:not(.line-light)::after{content:"\2192";font-size:15px;letter-spacing:0;line-height:1;transition:transform .35s var(--ease);}
+  .btn:hover{background-size:100% 100%,auto;color:var(--navy);border-color:var(--gold);box-shadow:0 16px 32px -14px rgba(11,26,48,.7);}
+  .btn:hover::before{inset:6px;border-color:rgba(19,40,74,.4);}
+  .btn:hover::after{transform:translateX(4px);}
+  .btn.ghost{color:var(--gold-deep);border-color:var(--gold-deep);background:linear-gradient(var(--navy),var(--navy)) no-repeat 0 0/0% 100%,transparent;box-shadow:none;}
+  .btn.ghost::before{border-color:rgba(138,106,51,.32);}
+  .btn.ghost:hover{color:var(--ivory);border-color:var(--navy);}
+  .btn.ghost:hover::before{border-color:rgba(216,195,151,.5);}
+  .btn.gold{color:var(--navy);border-color:var(--gold);background:linear-gradient(var(--navy),var(--navy)) no-repeat 0 0/0% 100%,linear-gradient(135deg,#CDB07A 0%,#B8955A 55%,#A8854A 100%);box-shadow:0 12px 28px -14px rgba(0,0,0,.6);}
+  .btn.gold::before{border-color:rgba(19,40,74,.35);}
+  .btn.gold:hover{color:var(--ivory);border-color:var(--gold-lt);background-size:100% 100%,auto;}
+  .btn.gold:hover::before{border-color:rgba(216,195,151,.55);}
+  .btn.line-light{color:var(--ivory);border-color:rgba(248,245,239,.5);background:linear-gradient(var(--gold),var(--gold)) no-repeat 0 0/0% 100%,transparent;box-shadow:none;}
+  .btn.line-light::before{border-color:rgba(216,195,151,.28);}
+  .btn.line-light:hover{color:var(--navy);border-color:var(--gold);}
+  .btn.line-light:hover::before{border-color:rgba(19,40,74,.4);}
   .link{font-weight:600;font-size:14px;letter-spacing:.04em;color:var(--gold-deep);display:inline-flex;align-items:center;gap:8px;transition:gap .25s var(--ease);}
   .link:hover{gap:12px;}
   .on-dark .link{color:var(--gold-lt);}
@@ -181,7 +192,7 @@
   .town{position:relative;overflow:hidden;min-height:330px;display:flex;align-items:flex-end;color:var(--ivory);grid-column:span 2;}
   .town.wide{grid-column:span 3;min-height:400px;}
   .town img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
-  .town::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,48,0) 22%,rgba(11,26,48,.55) 55%,rgba(11,26,48,.9) 100%);}
+  .town::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,48,0) 18%,rgba(11,26,48,.62) 50%,rgba(11,26,48,.92) 100%);}
   .town:hover img{transform:scale(1.04);}
   .town .t{position:relative;z-index:2;padding:26px 28px;}
   .town .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);}
@@ -287,8 +298,22 @@
   .js .reveal.in{opacity:1;}
   .js .reveal.d1{transition-delay:.08s;}.js .reveal.d2{transition-delay:.16s;}.js .reveal.d3{transition-delay:.24s;}
 
+  /* ---------- lifestyle ---------- */
+  .ls-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
+  .ls{position:relative;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:flex-end;color:var(--ivory);}
+  .ls img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);}
+  .ls::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,48,0) 25%,rgba(11,26,48,.6) 58%,rgba(11,26,48,.92) 100%);}
+  .ls::before{content:"";position:absolute;inset:14px;border:1px solid rgba(216,195,151,0);z-index:3;pointer-events:none;transition:border-color .45s var(--ease),inset .45s var(--ease);}
+  .ls:hover img{transform:scale(1.05);}
+  .ls:hover::before{border-color:rgba(216,195,151,.75);inset:12px;}
+  .ls .t{position:relative;z-index:2;padding:26px 28px;width:100%;}
+  .ls .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);}
+  .ls h3{font-size:30px;color:var(--ivory);margin-top:6px;}
+  .ls p{font-size:14.5px;color:#D3D9E2;margin-top:6px;line-height:1.5;}
+
   /* ---------- responsive ---------- */
   @media (max-width:1180px){
+    .nav .cta .btn{padding:16px 22px;letter-spacing:.14em;}
     .nav .links{gap:22px;}
     .nav .links a{font-size:14px;}
     .listings .cards{grid-template-columns:repeat(2,1fr);}
@@ -325,6 +350,7 @@
     .pillars{grid-template-columns:1fr;}
     .pillar,.pillar + .pillar{padding:30px 0;border-left:0;border-bottom:1px solid var(--line-dark);}
     .revs,.posts{grid-template-columns:1fr;}
+    .ls-grid{grid-template-columns:1fr 1fr;}
     .towns{grid-template-columns:1fr 1fr;}
     .town,.town.wide{grid-column:span 1;min-height:280px;}
     .town.wide:first-child{grid-column:1/-1;}
@@ -335,6 +361,8 @@
     body{padding-bottom:58px;}
   }
   @media (max-width:620px){
+    .btn{white-space:normal;text-align:center;padding:17px 22px;letter-spacing:.14em;line-height:1.4;}
+    .cta-band .row .btn,.standard .cta-row .btn{width:100%;}
     body{font-size:17px;}
     .topbar{font-size:12.5px;}
     .topbar .phones{gap:14px;}
@@ -349,6 +377,7 @@
     .vcard .pair{grid-template-columns:1fr;}
     .listings .cards{grid-template-columns:1fr;}
     .towns{grid-template-columns:1fr;}
+    .ls-grid{grid-template-columns:1fr;}
     .town.wide:first-child{grid-column:auto;}
     .agents{grid-template-columns:1fr;}
     .frame .card{position:relative;right:auto;bottom:auto;max-width:none;}
@@ -427,7 +456,7 @@
       </div>
       <div class="pane on" id="p-search" role="tabpanel">
         <form class="row" onsubmit="return false">
-          <div class="fld"><label for="q">Location</label><input id="q" type="text" placeholder="City, neighborhood, address or MLS #"></div>
+          <div class="fld"><label for="q">Location</label><input id="q" type="text" placeholder="City, neighborhood or MLS #"></div>
           <div class="fld"><label for="pr">Price</label>
             <select id="pr"><option>Any price</option><option>Under $500K</option><option>$500K &ndash; $1M</option><option>$1M &ndash; $2M</option><option>$2M &ndash; $5M</option><option>$5M+</option></select></div>
           <div class="fld"><label for="bd">Beds</label>
@@ -638,6 +667,46 @@
     <div class="also">
       <strong>Also serving</strong>
       <a href="#">Hutchinson Island</a><a href="#">Rocky Point</a><a href="#">Port Salerno</a><a href="#">Jupiter</a><a href="#">Tequesta</a><a href="#">Port St. Lucie</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIFESTYLE ============ -->
+<section class="lifestyle section" id="lifestyle">
+  <div class="wrap">
+    <div class="head-row">
+      <div>
+        <div class="eyebrow">Browse by lifestyle</div>
+        <h2>Start with how you <em>want to live</em>.</h2>
+        <p class="sub">On the water, by the beach or behind the gate. Pick the way of life first, then narrow it down by town.</p>
+      </div>
+      <a href="#search" class="btn ghost">Search all homes</a>
+    </div>
+    <div class="ls-grid">
+      <a class="ls" href="#">
+        <img src="img/lf-waterfront.jpg" alt="Waterfront homes along the Indian River on Hutchinson Island" loading="lazy">
+        <div class="t"><div class="k">Docks &amp; deep water</div><h3>Waterfront Homes</h3><p>On the St. Lucie, the Indian River and the Intracoastal.</p></div>
+      </a>
+      <a class="ls" href="#">
+        <img src="img/lf-condos.jpg" alt="Low-rise condominium buildings and a palm-lined walkway on Hutchinson Island" loading="lazy">
+        <div class="t"><div class="k">Low maintenance</div><h3>Condos</h3><p>Lock-and-leave living, from downtown Stuart to the island.</p></div>
+      </a>
+      <a class="ls" href="#">
+        <img src="img/lf-beach-condos.jpg" alt="Deck overlooking the dunes and the Atlantic on Hutchinson Island" loading="lazy">
+        <div class="t"><div class="k">Steps to the sand</div><h3>Beach Condos</h3><p>Ocean views and beach access along the barrier islands.</p></div>
+      </a>
+      <a class="ls" href="#">
+        <img src="img/lf-pools.jpg" alt="Backyard pool and covered patio at a Sewall's Point home" loading="lazy">
+        <div class="t"><div class="k">Backyard living</div><h3>Homes with Pools</h3><p>Screened and open-air pools, made for Florida evenings.</p></div>
+      </a>
+      <a class="ls" href="#">
+        <img src="img/lf-gated.jpg" alt="Aerial of a lakeside planned community in Port St. Lucie" loading="lazy">
+        <div class="t"><div class="k">Gated &amp; golf</div><h3>Gated Communities</h3><p>Guarded entries, lakes, fairways and clubhouses.</p></div>
+      </a>
+      <a class="ls" href="#">
+        <img src="img/lf-new.jpg" alt="Renovated kitchen with navy cabinets and a large island in Sewall's Point" loading="lazy">
+        <div class="t"><div class="k">Move-in ready</div><h3>New Homes</h3><p>New construction and fully renovated homes.</p></div>
+      </a>
     </div>
   </div>
 </section>
@@ -894,7 +963,7 @@
     });});
 
     // one simple fade on scroll, staggered within each group
-    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.pillar','.rev','.post','.faq details','.form-card'];
+    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.ls','.pillar','.rev','.post','.faq details','.form-card'];
     groups.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){
       el.classList.add('reveal');if(i%4)el.classList.add('d'+(i%4));
     });});
