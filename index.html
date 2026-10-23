@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Quinn Group | Stuart, FL Real Estate Agents</title>
+<title>Anne &amp; Sean | The Quinn Group | Stuart, FL Real Estate Agents</title>
 <meta name="description" content="Anne Warner &amp; Sean Quinn help buyers and sellers in Stuart, Sewall's Point, Jensen Beach &amp; Palm City. Search homes or get your home's value today.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preload" href="fonts/f3.woff2" as="font" type="font/woff2" crossorigin>
@@ -212,7 +212,13 @@
   .also a:hover{border-color:var(--gold);}
 
   /* ---------- standard band ---------- */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line-dark);}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);}
+  .stat{padding:34px 28px 30px 0;}
+  .stat + .stat{padding-left:28px;border-left:1px solid var(--line-dark);}
+  .stat .v{font-family:var(--serif);font-weight:500;font-size:clamp(40px,4.4vw,58px);line-height:1;color:var(--gold);font-variation-settings:"opsz" 28;}
+  .stat .l{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C3CAD6;margin-top:14px;line-height:1.5;}
+  .stats-note{margin-top:14px;}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:40px;border-top:1px solid var(--line-dark);}
   .pillar{padding:36px 36px 8px 0;}
   .pillar + .pillar{padding-left:36px;border-left:1px solid var(--line-dark);}
   .pillar .num{font-family:var(--serif);font-size:15px;color:var(--gold);}
@@ -355,6 +361,9 @@
     .frame .card{right:16px;bottom:-28px;}
     .intro .grid > div:last-child{margin-top:20px;}
     .pillars{grid-template-columns:1fr;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat:nth-child(3){padding-left:0;border-left:0;}
+    .stat:nth-child(n+3){border-top:1px solid var(--line-dark);}
     .pillar,.pillar + .pillar{padding:30px 0;border-left:0;border-bottom:1px solid var(--line-dark);}
     .revs,.posts{grid-template-columns:1fr;}
     .ls-grid{grid-template-columns:1fr 1fr;}
@@ -415,7 +424,7 @@
 <!-- ============ NAV ============ -->
 <header class="nav">
   <div class="wrap">
-    <a href="#" class="logo" aria-label="The Quinn Group home"><img src="img/logo-dark.png" alt="Anne &amp; Sean Realtors, like family" width="399" height="177"></a>
+    <a href="#" class="logo" aria-label="Anne &amp; Sean, The Quinn Group, home"><img src="img/logo-dark.png" alt="Anne &amp; Sean Realtors, like family" width="399" height="177"></a>
     <nav class="links" aria-label="Main">
       <a href="#search">Search Homes</a>
       <a href="#sell">Sell</a>
@@ -452,7 +461,7 @@
   <div class="bg"><img src="img/hero.jpg" alt="Aerial view of Hutchinson Island beachfront homes and the Indian River at sunset" fetchpriority="high"></div>
   <div class="wrap">
     <div class="copy">
-      <div class="eyebrow">Anne Warner &amp; Sean Quinn &middot; REALTORS&reg;</div>
+      <div class="eyebrow">Anne &amp; Sean &middot; The Quinn Group</div>
       <h1>Stuart, FL real estate agents who treat you <em>like family</em>.</h1>
       <p class="sub">Concierge-level care, held to the standard Sean learned at the U.S. Naval Academy. Search every listing on the Treasure Coast here, or start with what your home is worth.</p>
     </div>
@@ -497,7 +506,8 @@
       <div class="eyebrow">Meet the team</div>
       <h2>Anne and Sean, <em>by name</em>.</h2>
       <p>Sean grew up in Palm City and is a second-generation Martin County agent. He graduated from the U.S. Naval Academy, served seven years as a Surface Warfare Officer, and worked in management consulting before real estate.</p>
-      <p>Anne gives every client concierge-level service: market analysis, strategic pricing, negotiation and careful contract management, with boutique marketing plans for sellers. Her clients say she treats them like family, and she does.</p>
+      <p>Anne gives every client a concierge-level experience built around what they need. Her strengths are the parts of a sale that decide the outcome: market analysis, strategic pricing, negotiation, and careful contract management. For sellers she builds boutique marketing plans. For buyers she guides the search from the first showing to closing day.</p>
+      <p>When Anne says like family, she means it. She and Sean are married as well as partners, and they look after every client's home the way they would look after their own.</p>
       <div class="quote">Bringing professionalism back to real estate, one transaction at a time.</div>
       <div class="agents">
         <a class="agent" href="tel:+17724866883"><img src="img/sean.jpg" alt="Sean Quinn" loading="lazy"><div><div class="n">Sean Quinn</div><div class="p">(772) 486-6883</div></div></a>
@@ -730,6 +740,13 @@
     <div class="eyebrow">Why Anne &amp; Sean</div>
     <h2>Like family, <em>held to a standard</em>.</h2>
     <p class="sub">Two halves of the same promise: the care of people who treat you as their own, and the discipline of a team that does the details properly.</p>
+    <div class="stats">
+      <div class="stat"><div class="v">$134M+</div><div class="l">In closed sales since 2021</div></div>
+      <div class="stat"><div class="v">239</div><div class="l">Buyers &amp; sellers represented</div></div>
+      <div class="stat"><div class="v">131</div><div class="l">Homes sold for sellers</div></div>
+      <div class="stat"><div class="v">$564K</div><div class="l">Average sale price</div></div>
+    </div>
+    <p class="note stats-note">Closed transactions for Anne &amp; Sean, January 2021 to October 2026, from Water Pointe Realty Group sales records.</p>
     <div class="pillars">
       <div class="pillar"><div class="num">01</div><h3>Local, twice over</h3><p>Sean grew up in Palm City and comes from a family with a long history in Martin County real estate. He knows the waterways, neighborhoods and schools first-hand.</p></div>
       <div class="pillar"><div class="num">02</div><h3>Annapolis standards</h3><p>A U.S. Naval Academy graduate and seven-year Surface Warfare Officer, Sean brings preparation, integrity and follow-through to every contract.</p></div>
@@ -858,7 +875,7 @@
         <div class="r"><div class="k">Office</div><div class="v">3727 SE Ocean Blvd, Suite 100<br>Stuart, FL 34996</div></div>
         <div class="r"><div class="k">Sean Quinn</div><div class="v"><a href="tel:+17724866883">(772) 486-6883</a></div></div>
         <div class="r"><div class="k">Anne Warner</div><div class="v"><a href="tel:+17727137223">(772) 713-7223</a></div></div>
-        <div class="r"><div class="k">Email</div><div class="v"><a href="mailto:anneandsean@waterpointe.com">anneandsean@waterpointe.com</a></div></div>
+        <div class="r"><div class="k">Email</div><div class="v"><a href="mailto:thequinngroup@myfloridainsider.com">thequinngroup@myfloridainsider.com</a></div></div>
         <div class="r"><div class="k">Brokerage</div><div class="v">Water Pointe Realty Group</div></div>
       </div>
       <div class="map" aria-label="Stylized map of the Treasure Coast">
@@ -910,7 +927,7 @@
     <div class="top">
       <div class="brand">
         <img src="img/logo-light.png" alt="Anne &amp; Sean Realtors, like family" width="399" height="177" loading="lazy">
-        <p>The Quinn Group &amp; Anne Warner Realtor. Treasure Coast real estate, guided like family.</p>
+        <p>Anne &amp; Sean, The Quinn Group. Treasure Coast real estate, guided like family.</p>
         <div class="social">
           <a href="https://www.instagram.com/seanquinn94/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm6-7.9a1.1 1.1 0 1 1-1.1-1.1A1.1 1.1 0 0 1 18 7.1zM21.9 7a5.4 5.4 0 0 0-1.5-3.8A5.4 5.4 0 0 0 16.6 1.7C15.1 1.6 8.9 1.6 7.4 1.7a5.4 5.4 0 0 0-3.8 1.5A5.4 5.4 0 0 0 2.1 7c-.1 1.5-.1 7.7 0 9.2a5.4 5.4 0 0 0 1.5 3.8 5.4 5.4 0 0 0 3.8 1.5c1.5.1 7.7.1 9.2 0a5.4 5.4 0 0 0 3.8-1.5 5.4 5.4 0 0 0 1.5-3.8c.1-1.5.1-7.7 0-9.2zM20 18a3 3 0 0 1-1.7 1.7c-1.2.5-4 .4-5.3.4s-4.1.1-5.3-.4A3 3 0 0 1 6 18c-.5-1.2-.4-4-.4-5.3s-.1-4.1.4-5.3A3 3 0 0 1 7.7 5.7c1.2-.5 4-.4 5.3-.4s4.1-.1 5.3.4A3 3 0 0 1 20 7.4c.5 1.2.4 4 .4 5.3s.1 4.1-.4 5.3z"/></svg></a>
           <a href="https://www.linkedin.com/in/seanquinnwaterpointe/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.5 6a2.5 2.5 0 0 1 2.48-2.5zM3 8.98h4v12H3zm7 0h3.8v1.7h.1a4.2 4.2 0 0 1 3.8-2c4 0 4.8 2.7 4.8 6.1v6.2h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.6h-4z"/></svg></a>
@@ -940,10 +957,10 @@
         <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 3 20h5v24h32V20h5zM36 40H12V20.6L24 11l12 9.6zM16 26h16v4H16zm0 7h16v4H16z"/></svg>
         <span>Equal Housing<br>Opportunity</span>
       </div>
-      <p class="disc">The Quinn Group &amp; Anne Warner Realtor are REALTORS&reg; with Water Pointe Realty Group. All information is deemed reliable but not guaranteed and should be independently reviewed and verified.</p>
+      <p class="disc">Anne Warner and Sean Quinn of The Quinn Group are REALTORS&reg; with Water Pointe Realty Group. All information is deemed reliable but not guaranteed and should be independently reviewed and verified.</p>
     </div>
     <div class="bottom">
-      <span>&copy; 2026 The Quinn Group &amp; Anne Warner Realtor. All rights reserved.</span>
+      <span>&copy; 2026 Anne &amp; Sean, The Quinn Group. All rights reserved.</span>
       <span><a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#">Terms</a> &nbsp;&middot;&nbsp; <a href="#">Accessibility</a></span>
     </div>
   </div>
@@ -989,7 +1006,7 @@
     });});
 
     // one simple fade on scroll, staggered within each group
-    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.ls','.pillar','.rev','.post','.faq details','.form-card'];
+    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.ls','.stat','.pillar','.rev','.post','.faq details','.form-card'];
     groups.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){
       el.classList.add('reveal');if(i%4)el.classList.add('d'+(i%4));
     });});
