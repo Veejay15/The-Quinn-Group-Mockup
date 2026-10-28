@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Anne &amp; Sean | The Quinn Group | Stuart, FL Real Estate Agents</title>
-<meta name="description" content="Anne Warner &amp; Sean Quinn help buyers and sellers in Stuart, Sewall's Point, Jensen Beach &amp; Palm City. Search homes or get your home's value today.">
+<meta name="description" content="Anne &amp; Sean, The Quinn Group: Florida real estate agents based in Martin County, serving St. Lucie &amp; Palm Beach counties. Search homes or get your home's value.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preload" href="fonts/f3.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/f5.woff2" as="font" type="font/woff2" crossorigin>
@@ -311,6 +311,28 @@
   .js .reveal.in{opacity:1;}
   .js .reveal.d1{transition-delay:.08s;}.js .reveal.d2{transition-delay:.16s;}.js .reveal.d3{transition-delay:.24s;}
 
+  .counties{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2px;}
+  .county{background:var(--ivory);padding:30px 30px 28px;}
+  .county .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);}
+  .county h3{font-size:28px;margin-top:8px;}
+  .county p{font-size:15px;color:var(--slate);margin-top:8px;line-height:1.6;}
+  .places{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:14.5px;}
+  .places a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .25s var(--ease);}
+  .places a:hover{border-color:var(--gold);}
+
+  /* ---------- statewide ---------- */
+  .statewide .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(48px,6vw,96px);align-items:start;}
+  .reach{border-top:1px solid var(--line-dark);}
+  .reach .r{display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-dark);}
+  .reach .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);}
+  .reach .v{font-family:var(--serif);font-weight:500;font-size:30px;color:var(--ivory);line-height:1.1;font-variation-settings:"opsz" 28;}
+  .reach .v span{display:block;font-family:var(--sans);font-size:14px;color:#B9C2D1;margin-top:6px;font-weight:400;}
+  .referral{margin-top:32px;padding:30px 30px 28px;border:1px solid var(--line-dark);position:relative;}
+  .referral::before{content:"";position:absolute;left:0;top:0;width:40px;height:2px;background:var(--gold);}
+  .referral h3{font-size:26px;}
+  .referral p{color:#C3CAD6;font-size:15.5px;margin-top:10px;}
+  .referral .btn{margin-top:22px;}
+
   /* ---------- lifestyle ---------- */
   .ls-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;}
   .ls{position:relative;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:flex-end;color:var(--ivory);}
@@ -368,6 +390,8 @@
     .revs,.posts{grid-template-columns:1fr;}
     .ls-grid{grid-template-columns:1fr 1fr;}
     .towns{grid-template-columns:1fr 1fr;}
+    .counties{grid-template-columns:1fr;}
+    .statewide .grid{grid-template-columns:1fr;}
     .town,.town.wide{grid-column:span 1;min-height:280px;}
     .town.wide:first-child{grid-column:1/-1;}
     .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--ivory);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(11,26,48,.08);}
@@ -413,7 +437,7 @@
 <!-- ============ TOP BAR ============ -->
 <div class="topbar">
   <div class="wrap">
-    <div class="area">Stuart &middot; Sewall's Point &middot; Jensen Beach &middot; Palm City &middot; Hobe Sound</div>
+    <div class="area">Martin &middot; St. Lucie &middot; Palm Beach Counties &middot; Florida-wide referrals</div>
     <div class="phones">
       <div><span>Sean</span><a href="tel:+17724866883">(772) 486-6883</a></div>
       <div><span>Anne</span><a href="tel:+17727137223">(772) 713-7223</a></div>
@@ -462,8 +486,8 @@
   <div class="wrap">
     <div class="copy">
       <div class="eyebrow">Anne &amp; Sean &middot; The Quinn Group</div>
-      <h1>Stuart, FL real estate agents who treat you <em>like family</em>.</h1>
-      <p class="sub">Concierge-level care, held to the standard Sean learned at the U.S. Naval Academy. Search every listing on the Treasure Coast here, or start with what your home is worth.</p>
+      <h1>Florida real estate agents who treat you <em>like family</em>.</h1>
+      <p class="sub">Martin County is home, St. Lucie and Palm Beach counties are our everyday market, and we've closed deals from Tallahassee to Miami to Naples. Concierge-level care from a U.S. Naval Academy graduate and a former educator. Search every Treasure Coast listing here, or start with what your home is worth.</p>
     </div>
     <div class="finder">
       <div class="tabs" role="tablist">
@@ -506,8 +530,8 @@
       <div class="eyebrow">Meet the team</div>
       <h2>Anne and Sean, <em>by name</em>.</h2>
       <p>Sean grew up in Palm City and is a second-generation Martin County agent. He graduated from the U.S. Naval Academy, served seven years as a Surface Warfare Officer, and worked in management consulting before real estate.</p>
-      <p>Anne gives every client a concierge-level experience built around what they need. Her strengths are the parts of a sale that decide the outcome: market analysis, strategic pricing, negotiation, and careful contract management. For sellers she builds boutique marketing plans. For buyers she guides the search from the first showing to closing day.</p>
-      <p>When Anne says like family, she means it. She and Sean are married as well as partners, and they look after every client's home the way they would look after their own.</p>
+      <p>Anne is a former educator, and it shows: she explains every step clearly, so clients always know where things stand. She gives every client a concierge-level experience built around what they need. Her strengths are the parts of a sale that decide the outcome: market analysis, strategic pricing, negotiation, and careful contract management. For sellers she builds boutique marketing plans. For buyers she guides the search from the first showing to closing day.</p>
+      <p>Her professional network runs deep, so clients always have a trusted local contact for inspections, insurance, lending and moving in. When Anne says like family, she means it. She and Sean are married as well as partners, and they look after every client's home the way they would look after their own.</p>
       <div class="quote">Bringing professionalism back to real estate, one transaction at a time.</div>
       <div class="agents">
         <a class="agent" href="tel:+17724866883"><img src="img/sean.jpg" alt="Sean Quinn" loading="lazy"><div><div class="n">Sean Quinn</div><div class="p">(772) 486-6883</div></div></a>
@@ -662,7 +686,7 @@
       <div>
         <div class="eyebrow">Neighborhoods</div>
         <h2>Know the coast, <em>town by town</em>.</h2>
-        <p class="sub">Every town on the Treasure Coast prices differently, and so do the streets inside it. Start with the guide, then search the homes.</p>
+        <p class="sub">The Treasure Coast runs from Indian River County down to Palm Beach County. Martin County is our home turf, where every town prices differently, and so do the streets inside it.</p>
       </div>
     </div>
     <div class="towns">
@@ -687,9 +711,48 @@
         <div class="t"><div class="k">South Martin County</div><h3>Hobe Sound</h3><p>Quiet, green streets a short drive from the beach.</p><span class="link">Hobe Sound homes &rarr;</span></div>
       </a>
     </div>
-    <div class="also">
-      <strong>Also serving</strong>
-      <a href="#">Hutchinson Island</a><a href="#">Rocky Point</a><a href="#">Port Salerno</a><a href="#">Jupiter</a><a href="#">Tequesta</a><a href="#">Port St. Lucie</a>
+    <div class="counties">
+      <div class="county">
+        <div class="k">Home base</div>
+        <h3>Martin County</h3>
+        <p>Where we live and do most of our business, from the river to the beach.</p>
+        <div class="places"><a href="#">Hutchinson Island</a><a href="#">Rocky Point</a><a href="#">Port Salerno</a><a href="#">Palm City Farms</a></div>
+      </div>
+      <div class="county">
+        <div class="k">To the north</div>
+        <h3>St. Lucie County</h3>
+        <p>Same team, same standard, a short drive up the coast from our Stuart office.</p>
+        <div class="places"><a href="#">Port St. Lucie</a></div>
+      </div>
+      <div class="county">
+        <div class="k">To the south</div>
+        <h3>Palm Beach County</h3>
+        <p>The southern edge of the Treasure Coast, covered by the same two agents.</p>
+        <div class="places"><a href="#">Jupiter</a><a href="#">Tequesta</a><a href="#">Jupiter Farms</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATEWIDE ============ -->
+<section class="statewide section navy on-dark" id="florida">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow">Your Florida insider</div>
+      <h2>Rooted on the Treasure Coast, <em>trusted across Florida</em>.</h2>
+      <p class="sub">Martin, St. Lucie and Palm Beach counties are home. But when clients need us, we go further, and we've closed deals across the state. Coming to Florida for real estate advice? Start here.</p>
+      <div class="referral">
+        <h3>Buying or selling somewhere we don't cover?</h3>
+        <p>We work with partner agents throughout Florida. Tell us where you're headed, and we'll connect you with someone we trust, and stay in touch until you're settled.</p>
+        <a href="#contact" class="btn gold">Ask for a Florida referral</a>
+      </div>
+    </div>
+    <div class="reach">
+      <div class="r"><div class="k">Home base</div><div class="v">Martin County<span>Plus St. Lucie and Palm Beach counties, every day</span></div></div>
+      <div class="r"><div class="k">North</div><div class="v">Tallahassee<span>Deals closed as far north as the state capital</span></div></div>
+      <div class="r"><div class="k">South</div><div class="v">Miami<span>Deals closed as far south as Miami</span></div></div>
+      <div class="r"><div class="k">West</div><div class="v">Naples<span>Deals closed as far west as the Gulf Coast</span></div></div>
+      <div class="r"><div class="k">Everywhere else</div><div class="v">Partner agents<span>Trusted referrals anywhere in Florida</span></div></div>
     </div>
   </div>
 </section>
@@ -750,7 +813,7 @@
     <div class="pillars">
       <div class="pillar"><div class="num">01</div><h3>Local, twice over</h3><p>Sean grew up in Palm City and comes from a family with a long history in Martin County real estate. He knows the waterways, neighborhoods and schools first-hand.</p></div>
       <div class="pillar"><div class="num">02</div><h3>Annapolis standards</h3><p>A U.S. Naval Academy graduate and seven-year Surface Warfare Officer, Sean brings preparation, integrity and follow-through to every contract.</p></div>
-      <div class="pillar"><div class="num">03</div><h3>Concierge, start to close</h3><p>Anne handles the details that decide an outcome: pricing, negotiation, contracts and the trusted local contacts you need to move in.</p></div>
+      <div class="pillar"><div class="num">03</div><h3>An educator's clarity</h3><p>A former educator, Anne explains every step in plain terms and brings a concierge-level personal touch, plus a professional network of trusted local contacts from first showing to closing.</p></div>
     </div>
     <div class="cta-row">
       <a href="#sell" class="btn gold">What's my home worth?</a>
@@ -846,7 +909,7 @@
       </details>
       <details>
         <summary>Which areas do you cover?</summary>
-        <p>Our home market is Martin County, with Stuart, Sewall's Point, Jensen Beach, Palm City and Hobe Sound at its center. We also serve St. Lucie, Palm Beach and Indian River counties.</p>
+        <p>Martin County is our home market, with Stuart, Sewall's Point, Jensen Beach, Palm City and Hobe Sound at its center, and we serve St. Lucie and Palm Beach counties every day. The Treasure Coast runs from Indian River County down to Palm Beach County. We've also closed deals as far north as Tallahassee, as far south as Miami and as far west as Naples, and we refer clients to trusted partner agents anywhere else in Florida.</p>
       </details>
     </div>
   </div>
@@ -909,6 +972,7 @@
             <label><input type="radio" name="int" checked><span>Sell</span></label>
             <label><input type="radio" name="int"><span>Buy</span></label>
             <label><input type="radio" name="int"><span>Sell &amp; buy</span></label>
+            <label><input type="radio" name="int"><span>Florida referral</span></label>
             <label><input type="radio" name="int"><span>Something else</span></label>
           </div>
         </div>
@@ -1006,7 +1070,7 @@
     });});
 
     // one simple fade on scroll, staggered within each group
-    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.ls','.stat','.pillar','.rev','.post','.faq details','.form-card'];
+    var groups=['.intro .frame','.intro .grid > div:last-child','.sell .step','.vcard','.lcard','.town','.county','.reach .r','.ls','.stat','.pillar','.rev','.post','.faq details','.form-card'];
     groups.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el,i){
       el.classList.add('reveal');if(i%4)el.classList.add('d'+(i%4));
     });});
