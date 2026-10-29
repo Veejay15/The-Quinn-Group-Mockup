@@ -65,6 +65,10 @@ $kit['space_between_widgets'] = ['column' => '0', 'row' => '0', 'isLinked' => tr
 update_post_meta($kit_id, '_elementor_page_settings', $kit);
 update_option('elementor_disable_color_schemes', 'yes');
 update_option('elementor_disable_typography_schemes', 'yes');
+// Elementor's background lazy-load hides background-image (our gradient buttons and photo overlays) until a
+// section scrolls into view; off so the design never depends on it.
+update_option('elementor_lazy_load_background_images', '0');
+update_option('elementor_experiment-e_lazyload', 'inactive');
 
 update_option('blogname', 'Anne & Sean | The Quinn Group');
 update_option('blogdescription', 'Florida real estate agents based in Martin County, serving St. Lucie and Palm Beach counties.');

@@ -80,6 +80,8 @@ const elementorCss = `
 .qg .town > .elementor-widget-image,.qg .ls > .elementor-widget-image{position:absolute;inset:0;z-index:0}
 .qg .frame .card{width:auto}
 .qg .rev-note{margin-top:24px}
+.qg .map-live iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.qg .map-links{margin-top:14px}
 .qg .elementor-widget-text-editor p + p{margin-top:18px}
 /* UAE header: the top bar scrolls away, the nav stays pinned. */
 .qg #masthead{position:sticky;top:-40px;z-index:50}
@@ -209,6 +211,11 @@ const placesHtml = []; { let from = 0; for (let i = 0; i < 3; i++) { const g = g
 const faqHtml = html.slice(html.indexOf('<details open>'), html.lastIndexOf('</details>') + '</details>'.length);
 const headerHtml = siteLinks(fixImgs(grab('<div class="topbar">').text + '\n' + grab('<header class="nav">').text));
 const footerHtml = siteLinks(fixImgs(grab('<footer class="footer">').text + '\n' + grab('<div class="mbar">').text));
+
+// Live Google Map of the Google Business Profile listing (replaces the mockup's stylized map). No API key needed.
+const GBP_QUERY = encodeURIComponent('The Quinn Group & Anne Warner Realtor, 3727 SE Ocean Blvd, Suite 100, Stuart, FL 34996');
+const liveMap = `<div class="map map-live"><iframe src="https://maps.google.com/maps?q=${GBP_QUERY}&amp;z=15&amp;output=embed" title="The Quinn Group &amp; Anne Warner Realtor on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
+<p class="map-links"><a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=${GBP_QUERY}" target="_blank" rel="noopener">Get directions →</a></p>`;
 
 // ---------------------------------------------------------------- Elementor element helpers
 let seq = 0;
@@ -426,7 +433,7 @@ const home = [
 
   S('contact section', 'contact', [
     C('wrap grid', [
-      C('', [eyebrow('Contact'), h2('Visit us in <em>Stuart</em>.'), X('', frag('<div class="info">') + '\n' + frag('<div class="map"'))]),
+      C('', [eyebrow('Contact'), h2('Visit us in <em>Stuart</em>.'), X('', frag('<div class="info">') + '\n' + liveMap)]),
       X('', frag('<div class="form-card">')),
     ]),
   ]),
