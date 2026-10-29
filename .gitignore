@@ -1,3 +1,5 @@
 _review/
 wp-build/dist/
 wp-build/qg.tgz
+wp-build/node_modules/
+wp-build/migrate/pages/

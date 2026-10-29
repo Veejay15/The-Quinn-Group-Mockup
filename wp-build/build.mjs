@@ -89,10 +89,65 @@ const elementorCss = `
   .qg .cta-band .row > .elementor-widget,.qg .standard .cta-row > .elementor-widget{width:100%}
 }
 `;
+// Market guides (blog) and plain pages: theme templates in template-parts/single.php and archive.php.
+const articleCss = `
+/* ---------- articles + blog index ---------- */
+body.qg main.site-main{padding:0;max-width:none;margin:0;width:auto}
+.qg .article-head{padding:clamp(56px,7vw,96px) 0 clamp(72px,8vw,112px)}
+.qg .article-head .eyebrow a:hover{color:var(--ivory)}
+.qg .article-head h1{font-size:clamp(34px,4.4vw,56px);line-height:1.1;margin-top:18px;max-width:920px;color:var(--ivory)}
+.qg .article-head .meta{margin-top:20px;font-size:14px;color:#9AA6BA}
+.qg .article-head .sub{color:#C3CAD6}
+.qg .article-figure{margin-top:calc(-1 * clamp(40px,5vw,64px))}
+.qg .article-figure img{width:100%;aspect-ratio:16/9;max-height:620px;object-fit:cover}
+.qg .article-body{max-width:720px;margin:clamp(40px,5vw,64px) auto 0;font-size:18px;line-height:1.8;color:#2A3342}
+.qg .article-body > * + *{margin-top:22px}
+.qg .article-body h2{font-size:clamp(28px,3vw,36px);line-height:1.15;margin-top:52px;color:var(--navy)}
+.qg .article-body h3{font-size:24px;line-height:1.2;margin-top:38px;color:var(--navy)}
+.qg .article-body h4{font-family:var(--sans);font-size:15px;letter-spacing:.14em;text-transform:uppercase;margin-top:32px;color:var(--ink)}
+.qg .article-body a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:3px}
+.qg .article-body a:hover{color:var(--navy)}
+.qg .article-body strong{color:var(--ink)}
+.qg .article-body ul,.qg .article-body ol{padding-left:1.3em}
+.qg .article-body li + li{margin-top:8px}
+.qg .article-body li::marker{color:var(--gold-deep)}
+.qg .article-body blockquote{border-left:2px solid var(--gold);padding-left:24px;font-family:var(--serif);font-style:italic;font-weight:500;font-size:22px;line-height:1.5;color:var(--navy)}
+.qg .article-body table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.5}
+.qg .article-body th,.qg .article-body td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.qg .article-body th{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);background:var(--sand)}
+.qg .article-body img{max-width:100%;height:auto;margin:0 auto}
+.qg .author-box{max-width:720px;margin:64px auto clamp(72px,8vw,112px);display:grid;grid-template-columns:auto 1fr;gap:24px;padding:28px 30px;background:var(--sand);border-left:2px solid var(--gold)}
+.qg .author-photos{display:flex}
+.qg .author-photos img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:3px solid var(--sand)}
+.qg .author-photos img + img{margin-left:-16px}
+.qg .author-box .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.qg .author-box .who{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.25;color:var(--navy);margin-top:6px;font-variation-settings:"opsz" 11}
+.qg .author-box p{font-size:15px;color:var(--slate);margin-top:8px}
+.qg .author-box .calls{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:12px}
+.qg .author-box .calls a{font-weight:600;color:var(--gold-deep)}
+.qg .qg-article .insights h2{margin-top:16px}
+.qg .guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px}
+.qg .guide{display:flex;flex-direction:column;background:var(--sand);transition:transform .25s var(--ease)}
+.qg .guide:hover{transform:translateY(-3px)}
+.qg .guide .ph{aspect-ratio:16/10;overflow:hidden;background:var(--line)}
+.qg .guide .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.qg .guide:hover .ph img{transform:scale(1.04)}
+.qg .guide .body{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.qg .guide .k{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
+.qg .guide h2{font-size:24px;line-height:1.22;margin-top:10px;font-variation-settings:"opsz" 11}
+.qg .guide p{font-size:15px;line-height:1.65;color:var(--slate);margin-top:12px;flex:1}
+.qg .guide .link{margin-top:18px}
+.qg .pagination,.qg .navigation .nav-links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:56px}
+.qg .page-numbers{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0 14px;border:1px solid var(--line);font-weight:600;font-size:14px;color:var(--ink)}
+.qg .page-numbers.current{background:var(--navy);border-color:var(--navy);color:var(--ivory)}
+.qg a.page-numbers:hover{border-color:var(--gold)}
+@media (max-width:980px){.qg .guide-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.qg .guide-grid{grid-template-columns:1fr}.qg .author-box{grid-template-columns:1fr}.qg .article-body{font-size:17px}}
+`;
 const css = html.match(/<style>([\s\S]*?)<\/style>/)[1].replace(/\/\*[\s\S]*?\*\//g, '');
 fs.writeFileSync(path.join(themeOut, 'assets', 'quinn.css'),
   '/* Generated by wp-build/build.mjs from the approved mockup. Edit the mockup or build.mjs, not this file. */\n'
-  + renderCss(parseCss(css)) + elementorCss);
+  + renderCss(parseCss(css)) + elementorCss + articleCss);
 
 // ---------------------------------------------------------------- images
 const SEO = {
@@ -116,6 +171,10 @@ for (const m of html.matchAll(/src="img\/([\w-]+)\.(jpg|png)"[^>]*?alt="([^"]*)"
 fs.writeFileSync(path.join(dist, 'media-manifest.json'), JSON.stringify(manifest, null, 1));
 fs.copyFileSync(path.join(here, 'install.php'), path.join(dist, 'install.php'));
 fs.copyFileSync(path.join(here, 'yoast.php'), path.join(dist, 'yoast.php'));
+fs.mkdirSync(path.join(dist, 'migrate'), { recursive: true });
+for (const f of ['import-blog.php', 'blog.json']) {
+  if (fs.existsSync(path.join(here, 'migrate', f))) fs.copyFileSync(path.join(here, 'migrate', f), path.join(dist, 'migrate', f));
+}
 
 const mediaFile = path.join(here, 'media.json');
 if (!fs.existsSync(mediaFile)) {

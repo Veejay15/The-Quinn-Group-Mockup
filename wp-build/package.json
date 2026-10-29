@@ -1,0 +1,9 @@
+{
+  "name": "quinn-wp-build",
+  "private": true,
+  "type": "module",
+  "description": "Build + migration tooling for The Quinn Group WordPress site",
+  "dependencies": {
+    "node-html-parser": "^7.0.1"
+  }
+}
