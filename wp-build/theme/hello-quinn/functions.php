@@ -14,6 +14,8 @@ if (!defined('ABSPATH')) {
 add_filter('hello_elementor_enqueue_style', '__return_false');
 add_filter('hello_elementor_enqueue_theme_style', '__return_false');
 add_filter('elementor/frontend/print_google_fonts', '__return_false');
+// Yoast SEO writes the meta description; Hello's own tag would duplicate it.
+add_filter('hello_elementor_description_meta_tag', '__return_false');
 
 add_action('wp_enqueue_scripts', function () {
 	$dir  = get_stylesheet_directory_uri() . '/assets';

@@ -114,6 +114,7 @@ for (const m of html.matchAll(/src="img\/([\w-]+)\.(jpg|png)"[^>]*?alt="([^"]*)"
 }
 fs.writeFileSync(path.join(dist, 'media-manifest.json'), JSON.stringify(manifest, null, 1));
 fs.copyFileSync(path.join(here, 'install.php'), path.join(dist, 'install.php'));
+fs.copyFileSync(path.join(here, 'yoast.php'), path.join(dist, 'yoast.php'));
 
 const mediaFile = path.join(here, 'media.json');
 if (!fs.existsSync(mediaFile)) {
