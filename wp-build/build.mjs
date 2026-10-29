@@ -71,6 +71,7 @@ const elementorCss = `
 .qg .elementor-widget:not(:last-child){margin-block-end:0}
 .qg div.elementor-heading-title,.qg p.elementor-heading-title,.qg span.elementor-heading-title{line-height:inherit}
 .qg [id]{scroll-margin-top:100px}
+.qg [hidden]{display:none !important}
 .qg .hero,.qg .town,.qg .ls,.qg .head-row,.qg .foot,.qg .cta-row,.qg .cta-band .row{flex-direction:row}
 .qg .head-row > *,.qg .foot > *,.qg .cta-row > *,.qg .cta-band .row > *{width:auto;flex:0 1 auto}
 .qg .head-row > .e-con{flex:1 1 360px}

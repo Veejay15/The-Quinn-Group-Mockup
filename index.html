@@ -282,6 +282,8 @@
   .chips span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .25s var(--ease),background .25s var(--ease);text-transform:none;letter-spacing:.01em;}
   .chips input:checked + span{border-color:var(--navy);background:var(--navy);color:var(--ivory);}
   .chips input:focus-visible + span{outline:2px solid var(--navy);outline-offset:2px;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-done{margin-top:28px;}
 
   /* ---------- footer ---------- */
   .footer{background:var(--ink);color:#B9C2D1;padding:84px 0 0;font-size:14.5px;}
@@ -559,17 +561,18 @@
       <h3>What's your home <em>worth</em>?</h3>
       <p class="lead">Just tell us where it is. Anne or Sean will personally prepare a pricing review for your home and get back to you.</p>
       <form class="v-step on" id="v1" onsubmit="return false">
-        <div class="fld"><label for="sa">Property address</label><input id="sa" type="text" placeholder="Start typing your home's address"></div>
+        <div class="fld"><label for="sa">Property address</label><input id="sa" name="property_address" type="text" autocomplete="street-address" required placeholder="Start typing your home's address"></div>
         <button class="btn gold" type="submit">Get my home's value</button>
       </form>
       <form class="v-step" id="v2" onsubmit="return false" aria-live="polite">
         <div class="v-addr"><span class="k">Your home</span><span id="v-addr-text"></span><button type="button" class="v-edit">Edit</button></div>
         <p class="v-ask">Where should Anne or Sean send your pricing review?</p>
         <div class="pair">
-          <div class="fld"><label for="sn">Name</label><input id="sn" type="text" placeholder="Your name"></div>
-          <div class="fld"><label for="sp">Phone</label><input id="sp" type="tel" placeholder="(772) 000-0000"></div>
+          <div class="fld"><label for="sn">Name</label><input id="sn" name="name" type="text" autocomplete="name" required placeholder="Your name"></div>
+          <div class="fld"><label for="sp">Phone</label><input id="sp" name="phone" type="tel" autocomplete="tel" placeholder="(772) 000-0000"></div>
         </div>
-        <div class="fld"><label for="se">Email</label><input id="se" type="email" placeholder="you@email.com"></div>
+        <div class="fld"><label for="se">Email</label><input id="se" name="email" type="email" autocomplete="email" required placeholder="you@email.com"></div>
+        <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <button class="btn gold" type="submit">Send to Anne &amp; Sean</button>
       </form>
       <div class="v-step" id="v3" aria-live="polite">
@@ -963,22 +966,24 @@
     <div class="form-card">
       <h3>Send Anne &amp; Sean a note</h3>
       <p class="lead">Tell us a little about what you're planning. One of us will reply personally.</p>
-      <form onsubmit="return false">
-        <div class="fld"><label for="cn">Name</label><input id="cn" type="text" placeholder="Your name"></div>
-        <div class="fld"><label for="cp">Phone</label><input id="cp" type="tel" placeholder="(772) 000-0000"></div>
-        <div class="fld full"><label for="ce">Email</label><input id="ce" type="email" placeholder="you@email.com"></div>
+      <form id="contact-form" onsubmit="return false">
+        <div class="fld"><label for="cn">Name</label><input id="cn" name="name" type="text" autocomplete="name" required placeholder="Your name"></div>
+        <div class="fld"><label for="cp">Phone</label><input id="cp" name="phone" type="tel" autocomplete="tel" placeholder="(772) 000-0000"></div>
+        <div class="fld full"><label for="ce">Email</label><input id="ce" name="email" type="email" autocomplete="email" required placeholder="you@email.com"></div>
         <div class="fld full"><label>I'm looking to</label>
           <div class="chips">
-            <label><input type="radio" name="int" checked><span>Sell</span></label>
-            <label><input type="radio" name="int"><span>Buy</span></label>
-            <label><input type="radio" name="int"><span>Sell &amp; buy</span></label>
-            <label><input type="radio" name="int"><span>Florida referral</span></label>
-            <label><input type="radio" name="int"><span>Something else</span></label>
+            <label><input type="radio" name="interest" value="Sell" checked><span>Sell</span></label>
+            <label><input type="radio" name="interest" value="Buy"><span>Buy</span></label>
+            <label><input type="radio" name="interest" value="Sell &amp; buy"><span>Sell &amp; buy</span></label>
+            <label><input type="radio" name="interest" value="Florida referral"><span>Florida referral</span></label>
+            <label><input type="radio" name="interest" value="Something else"><span>Something else</span></label>
           </div>
         </div>
-        <div class="fld full"><label for="cm">Message</label><textarea id="cm" placeholder="The town, the timing, or the question on your mind"></textarea></div>
+        <div class="fld full"><label for="cm">Message</label><textarea id="cm" name="message" placeholder="The town, the timing, or the question on your mind"></textarea></div>
+        <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <div class="full"><button class="btn" type="submit" style="width:100%">Send to Anne &amp; Sean</button></div>
       </form>
+      <p class="v-done form-done" hidden aria-live="polite"><strong>Thank you.</strong> Anne or Sean will reply to you personally.</p>
     </div>
   </div>
 </section>

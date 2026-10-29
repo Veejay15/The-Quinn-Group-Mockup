@@ -70,8 +70,18 @@ update_option('blogname', 'Anne & Sean | The Quinn Group');
 update_option('blogdescription', 'Florida real estate agents based in Martin County, serving St. Lucie and Palm Beach counties.');
 
 // ---- posts carrying Elementor data
+// Each write stores a hash of the data. If the data no longer matches it, someone edited the page in
+// Elementor since the last deploy, and the deploy stops instead of overwriting their work (pass "force" to override).
+$force = in_array('force', $args, true);
 function qg_upsert($key, $type, $title, $json_file, $meta) {
+	global $force;
 	$id = qg_find('_qg_key', $key, $type);
+	if ($id && !$force) {
+		$hash = get_post_meta($id, '_qg_hash', true);
+		if ($hash && $hash !== md5((string) get_post_meta($id, '_elementor_data', true))) {
+			WP_CLI::error("'$key' (post $id) was edited in WordPress since the last deploy. Not overwriting; rerun with 'force' to replace it.");
+		}
+	}
 	$post = ['post_type' => $type, 'post_title' => $title, 'post_status' => 'publish'];
 	if ($id) {
 		$post['ID'] = $id;
@@ -81,6 +91,7 @@ function qg_upsert($key, $type, $title, $json_file, $meta) {
 		update_post_meta($id, '_qg_key', $key);
 	}
 	update_post_meta($id, '_elementor_data', wp_slash(file_get_contents($json_file)));
+	update_post_meta($id, '_qg_hash', md5((string) get_post_meta($id, '_elementor_data', true)));
 	update_post_meta($id, '_elementor_edit_mode', 'builder');
 	update_post_meta($id, '_elementor_version', ELEMENTOR_VERSION);
 	foreach ($meta as $k => $v) {

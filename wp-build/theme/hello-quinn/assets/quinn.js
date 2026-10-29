@@ -17,6 +17,29 @@
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
   }
 
+  // lead forms post to WordPress (admin-ajax), which forwards to GoHighLevel. UTM tags from the landing URL ride along.
+  var utm = {};
+  try {
+    var qs = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) { if (qs.get(k)) sessionStorage.setItem('qg_' + k, qs.get(k)); utm[k] = sessionStorage.getItem('qg_' + k) || ''; });
+  } catch (e) {}
+  var sendLead = function (form, fields, btn) {
+    var data = new FormData();
+    data.append('action', 'qg_lead'); data.append('form', form); data.append('page_url', location.href);
+    Object.keys(utm).forEach(function (k) { data.append(k, utm[k]); });
+    Object.keys(fields).forEach(function (k) { data.append(k, fields[k]); });
+    if (btn) btn.disabled = true;
+    return fetch((window.qgLead || {}).ajax || '/wp-admin/admin-ajax.php', { method: 'POST', body: data, credentials: 'same-origin' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (!j.success) throw new Error((j.data && j.data.message) || 'Please check the form.'); })
+      .finally(function () { if (btn) btn.disabled = false; });
+  };
+  var formFields = function (formEl) {
+    var out = {};
+    new FormData(formEl).forEach(function (v, k) { out[k] = typeof v === 'string' ? v.trim() : v; });
+    return out;
+  };
+
   // home value: address first, then where to send the review
   var v1 = $('#v1'), v2 = $('#v2'), v3 = $('#v3'), sa = $('#sa');
   if (v1 && v2 && v3 && sa) {
@@ -32,7 +55,13 @@
       var n = $('#sn'); if (n) n.focus({ preventScroll: true });
     };
     v1.addEventListener('submit', function (e) { e.preventDefault(); toStep2(sa.value.trim()); });
-    v2.addEventListener('submit', function (e) { e.preventDefault(); show(v3); });
+    v2.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fields = formFields(v2); fields.property_address = sa.value.trim();
+      sendLead('home_value', fields, $('button[type=submit]', v2))
+        .then(function () { show(v3); })
+        .catch(function (err) { alert(err.message || 'Sorry, something went wrong. Please call Sean at (772) 486-6883.'); });
+    });
     var edit = $('.v-edit', v2); if (edit) edit.addEventListener('click', function () { show(v1); sa.focus(); });
     var heroValue = $('#p-value form');
     if (heroValue) heroValue.addEventListener('submit', function (e) {
@@ -41,6 +70,15 @@
       var sell = $('#sell'); if (sell) sell.scrollIntoView({ behavior: 'smooth' });
     });
   }
+
+  // contact form
+  var cf = $('#contact-form');
+  if (cf) cf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    sendLead('contact', formFields(cf), $('button[type=submit]', cf))
+      .then(function () { cf.hidden = true; var done = $('.form-done'); if (done) done.hidden = false; })
+      .catch(function (err) { alert(err.message || 'Sorry, something went wrong. Please call Sean at (772) 486-6883.'); });
+  });
 
   // hero finder tabs
   var tabs = $$('.finder .tab');
