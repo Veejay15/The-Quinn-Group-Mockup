@@ -112,6 +112,24 @@ add_action('wp_head', function () {
 	}
 }, 1);
 
+/*
+ * Permanent redirects from Luxury Presence URLs that moved on the new site. Only used when the URL
+ * would otherwise 404, and before WordPress's own "closest slug" guess (priority 1).
+ */
+add_action('template_redirect', function () {
+	if (!is_404()) {
+		return;
+	}
+	$moved = [
+		'/team' => '/about/',
+	];
+	$path = strtolower(untrailingslashit((string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH)));
+	if (isset($moved[$path])) {
+		wp_safe_redirect(home_url($moved[$path]), 301, 'The Quinn Group');
+		exit;
+	}
+}, 1);
+
 add_filter('body_class', function ($classes) {
 	$classes[] = 'qg';
 	return $classes;

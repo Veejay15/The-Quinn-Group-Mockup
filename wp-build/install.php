@@ -124,7 +124,7 @@ update_option('page_on_front', $home);
 $inner = [];
 foreach ([
 	'sell'          => ['Home Valuation', 'home-valuation'],
-	'about'         => ['Meet Anne & Sean', 'team'],
+	'about'         => ['Meet Anne & Sean', 'about'],
 	'neighborhoods' => ['Neighborhoods', 'neighborhoods'],
 	'contact'       => ['Contact', 'contact-us'],
 ] as $key => [$title, $slug]) {

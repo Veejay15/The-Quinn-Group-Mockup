@@ -211,9 +211,9 @@ function fixImgs(h) {
   });
 }
 // Header/footer links: the mockup's homepage anchors now go to the inner pages (search stays on the homepage until IDX).
-const PAGES = { sell: '/home-valuation/', neighborhoods: '/neighborhoods/', about: '/team/', insights: '/blog/', contact: '/contact-us/', search: '/#search' };
+const PAGES = { sell: '/home-valuation/', neighborhoods: '/neighborhoods/', about: '/about/', insights: '/blog/', contact: '/contact-us/', search: '/#search' };
 const siteLinks = h => h.replace(/href="#" class="logo"/g, 'href="/" class="logo"')
-  .replace('<a href="#">Client stories</a>', '<a href="/team/#reviews">Client stories</a>')
+  .replace('<a href="#">Client stories</a>', '<a href="/about/#reviews">Client stories</a>')
   .replace('<a href="#insights">Seller\'s guide</a>', '<a href="/blog/sellers-strategy-guide/">Seller\'s guide</a>')
   .replace(/href="#([a-z]+)"/g, (m, id) => `href="${PAGES[id] || '/#' + id}"`);
 
@@ -489,7 +489,7 @@ const pages = {
     sec.faq([0, 2, 4]),
   ],
 
-  // /team/
+  // /about/ (the Luxury Presence site used /team, which redirects here)
   about: [
     sec.pageHead('About us', 'Meet Anne &amp; Sean, <em>The Quinn Group</em>.', 'Husband-and-wife real estate agents with Water Pointe Realty Group, based in Stuart and serving Martin, St. Lucie and Palm Beach counties.'),
     sec.intro(),
