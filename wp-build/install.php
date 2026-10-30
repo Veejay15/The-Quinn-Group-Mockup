@@ -2,7 +2,7 @@
 /**
  * The Quinn Group WordPress installer. Run on the server from ~/html:
  *   wp eval-file ~/qg-build/install.php media   imports ~/qg-build/img, prints media.json (name -> {id,url})
- *   wp eval-file ~/qg-build/install.php site    kit + options, UAE header/footer, Home page as front page
+ *   wp eval-file ~/qg-build/install.php site    kit + options, UAE header/footer, Home page as front page, inner pages
  * Idempotent: posts and attachments are found again by their _qg_key / _qg_src meta and updated in place.
  */
 
@@ -120,6 +120,21 @@ wp_update_post(['ID' => $home, 'post_name' => 'home']);
 update_option('show_on_front', 'page');
 update_option('page_on_front', $home);
 
+// Inner pages, at the same URLs the Luxury Presence site uses where one existed.
+$inner = [];
+foreach ([
+	'sell'          => ['Home Valuation', 'home-valuation'],
+	'about'         => ['Meet Anne & Sean', 'team'],
+	'neighborhoods' => ['Neighborhoods', 'neighborhoods'],
+	'contact'       => ['Contact', 'contact-us'],
+] as $key => [$title, $slug]) {
+	$id = qg_upsert($key, 'page', $title, "$base/elementor/$key.json", [
+		'_elementor_template_type' => 'wp-page', '_wp_page_template' => 'elementor_header_footer',
+	]);
+	wp_update_post(['ID' => $id, 'post_name' => $slug]);
+	$inner[] = "$key $id " . get_permalink($id);
+}
+
 // ---- WordPress sample content
 foreach ([1 => 'Hello world!', 2 => 'Sample Page', 6 => 'Elementor #6'] as $id => $title) {
 	$p = get_post($id);
@@ -129,4 +144,4 @@ foreach ([1 => 'Hello world!', 2 => 'Sample Page', 6 => 'Elementor #6'] as $id =
 }
 
 \Elementor\Plugin::$instance->files_manager->clear_cache();
-WP_CLI::success("header $header, footer $footer, home $home");
+WP_CLI::success("header $header, footer $footer, home $home; " . implode(', ', $inner));

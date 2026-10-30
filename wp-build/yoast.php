@@ -54,6 +54,22 @@ update_post_meta($home, '_yoast_wpseo_focuskw', 'Stuart FL real estate agents');
 update_post_meta($home, '_yoast_wpseo_opengraph-image', wp_get_attachment_url($hero_id));
 update_post_meta($home, '_yoast_wpseo_opengraph-image-id', $hero_id);
 
+// Inner pages (found by the _qg_key install.php gives them).
+foreach ([
+	'sell'          => ["What's My Home Worth? Stuart, FL Home Valuation | The Quinn Group", "Get a price for your home from Anne & Sean, based on recent sales on your street, today's competition and your home's condition. Martin, St. Lucie & Palm Beach counties.", 'Stuart FL home value'],
+	'about'         => ['Meet Anne Warner & Sean Quinn | The Quinn Group, Stuart FL', 'Anne Warner and Sean Quinn of The Quinn Group, Water Pointe Realty Group: a former educator and a U.S. Naval Academy graduate who treat Treasure Coast clients like family.', 'Anne Warner Sean Quinn realtors'],
+	'neighborhoods' => ['Treasure Coast Neighborhoods, Town by Town | The Quinn Group', "Sewall's Point, Stuart, Jensen Beach, Palm City and Hobe Sound, plus St. Lucie and Palm Beach counties: how each Treasure Coast town lives and prices, from Anne & Sean.", 'Treasure Coast neighborhoods'],
+	'contact'       => ['Contact Anne & Sean | The Quinn Group, Stuart, FL Realtors', 'Call Sean at (772) 486-6883 or Anne at (772) 713-7223, visit us at 3727 SE Ocean Blvd, Suite 100, Stuart, FL 34996, or send a message.', 'contact Stuart FL realtor'],
+] as $key => [$title, $desc, $kw]) {
+	$ids = get_posts(['post_type' => 'page', 'meta_key' => '_qg_key', 'meta_value' => $key, 'numberposts' => 1, 'fields' => 'ids']);
+	if (!$ids) {
+		continue;
+	}
+	update_post_meta($ids[0], '_yoast_wpseo_title', $title);
+	update_post_meta($ids[0], '_yoast_wpseo_metadesc', $desc);
+	update_post_meta($ids[0], '_yoast_wpseo_focuskw', $kw);
+}
+
 // Header/footer templates are not pages people should find in search.
 foreach (get_posts(['post_type' => 'elementor-hf', 'numberposts' => -1, 'fields' => 'ids']) as $id) {
 	update_post_meta($id, '_yoast_wpseo_meta-robots-noindex', '1');

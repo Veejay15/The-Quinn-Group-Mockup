@@ -15,6 +15,12 @@
     $$('.mpanel a', nav).forEach(function (a) { a.addEventListener('click', close); });
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
     window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
+    // mark the current page in the menu (Resources stays marked on every market guide)
+    var here = location.pathname;
+    $$('.links a, .mpanel nav a', nav).forEach(function (a) {
+      if (a.hash || a.pathname === '/') return;
+      if (here === a.pathname || (a.pathname === '/blog/' && here.indexOf('/blog/') === 0)) a.setAttribute('aria-current', 'page');
+    });
   }
 
   // lead forms post to WordPress (admin-ajax), which forwards to GoHighLevel. UTM tags from the landing URL ride along.

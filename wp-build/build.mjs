@@ -1,7 +1,7 @@
 // Builds The Quinn Group WordPress assets from the approved mockup (../index.html).
 //   dist/hello-quinn/                  child theme: theme/hello-quinn + generated assets/quinn.css + fonts
 //   dist/img/ + dist/media-manifest.json   images to import, with SEO filenames and the mockup's alt text
-//   dist/elementor/{home,header,footer}.json   Elementor data (built only once media.json exists)
+//   dist/elementor/{home,sell,about,neighborhoods,contact,header,footer}.json   Elementor data (built only once media.json exists)
 // media.json (name -> {id,url}) is written by `wp eval-file install.php media` on the server.
 // Usage: node build.mjs
 import fs from 'node:fs';
@@ -83,6 +83,11 @@ const elementorCss = `
 .qg .map-live iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .qg .map-links{margin-top:14px}
 .qg .elementor-widget-text-editor p + p{margin-top:18px}
+/* inner pages: the Sell page opens with the seller section, so its heading is the H1; current page in the menu */
+.qg .sell h1{font-size:clamp(34px,4.4vw,56px);line-height:1.1;margin-top:16px}
+.qg .nav .links a[aria-current]{color:var(--gold-deep)}
+.qg .nav .links a[aria-current]::after{width:100%}
+.qg .mpanel nav a[aria-current]{color:var(--gold-deep)}
 /* UAE header: the top bar scrolls away, the nav stays pinned. */
 .qg #masthead{position:sticky;top:-40px;z-index:50}
 .qg.admin-bar #masthead{top:-8px}
@@ -205,7 +210,12 @@ function fixImgs(h) {
     return `src="${media[n].url}"`;
   });
 }
-const siteLinks = h => h.replace(/href="#" class="logo"/g, 'href="/" class="logo"').replace(/href="#([a-z])/g, 'href="/#$1');
+// Header/footer links: the mockup's homepage anchors now go to the inner pages (search stays on the homepage until IDX).
+const PAGES = { sell: '/home-valuation/', neighborhoods: '/neighborhoods/', about: '/team/', insights: '/blog/', contact: '/contact-us/', search: '/#search' };
+const siteLinks = h => h.replace(/href="#" class="logo"/g, 'href="/" class="logo"')
+  .replace('<a href="#">Client stories</a>', '<a href="/team/#reviews">Client stories</a>')
+  .replace('<a href="#insights">Seller\'s guide</a>', '<a href="/blog/sellers-strategy-guide/">Seller\'s guide</a>')
+  .replace(/href="#([a-z]+)"/g, (m, id) => `href="${PAGES[id] || '/#' + id}"`);
 
 const placesHtml = []; { let from = 0; for (let i = 0; i < 3; i++) { const g = grab('<div class="places">', from); placesHtml.push(g.text); from = g.end; } }
 const faqHtml = html.slice(html.indexOf('<details open>'), html.lastIndexOf('</details>') + '</details>'.length);
@@ -239,9 +249,27 @@ const eyebrow = (t, cls = '') => H('div', `eyebrow ${cls}`.trim(), t);
 const h2 = t => H('h2', '', t);
 const sub = t => T('sub', `<p>${t}</p>`);
 
-// ---------------------------------------------------------------- homepage
-const home = [
-  S('hero on-dark', 'search', [
+// ---------------------------------------------------------------- sections
+// Each homepage section is a function, so the inner pages reuse the approved design. Options only change
+// links (a link to a section on the same page stays an anchor; anywhere else it goes to the page that has it)
+// and which items a section shows.
+const blogFile = path.join(here, 'migrate', 'blog.json');
+const blog = fs.existsSync(blogFile) ? Object.fromEntries(JSON.parse(fs.readFileSync(blogFile, 'utf8')).map(p => [p.slug, p])) : {};
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const guideUrl = slug => {
+  if (!blog[slug] || blog[slug].skip) throw new Error('market guide not imported: ' + slug);
+  return `/blog/${slug}/`;
+};
+// [kicker, slug] -> card using the guide's own title and description
+const guideCard = ([k, slug]) => [k, esc(blog[slug]?.h1 || ''), esc(blog[slug]?.description || ''), guideUrl(slug)];
+const faqs = faqHtml.match(/<details[\s\S]*?<\/details>/g);
+const faqList = idx => idx.map((i, n) => faqs[i].replace(/^<details( open)?>/, n ? '<details>' : '<details open>')).join('\n');
+
+const sec = {
+  // navy title band for inner pages (same look as the market guides header)
+  pageHead: (k, title, text) => S('article-head navy on-dark', '', [C('wrap', [eyebrow(k), H('h1', '', title), sub(text)])]),
+
+  hero: () => S('hero on-dark', 'search', [
     C('bg', [I('', 'hero')]),
     C('wrap', [
       C('copy', [
@@ -253,7 +281,7 @@ const home = [
     ]),
   ]),
 
-  S('intro section', 'about', [
+  intro: () => S('intro section', 'about', [
     C('wrap grid', [
       C('frame', [
         C('photo', [I('', 'team')]),
@@ -273,11 +301,12 @@ const home = [
     ]),
   ]),
 
-  S('sell section navy on-dark', 'sell', [
+  // On the Sell page this is the first section, so its heading is the page's H1.
+  sell: ({ h1 = false } = {}) => S('sell section navy on-dark', 'sell', [
     C('wrap grid', [
       C('', [
         eyebrow('For sellers'),
-        h2("Before we talk price, let's look at <em>your street</em>."),
+        H(h1 ? 'h1' : 'h2', '', "Before we talk price, let's look at <em>your street</em>."),
         sub("An online estimate is a starting point. A price you can sell at comes from what has actually sold near you, what's competing right now, and how your home shows. Here is how we get there with you."),
         C('steps', [
           ['01', 'Walk-through', 'We see the home in person and listen to your timing and plans.'],
@@ -290,31 +319,32 @@ const home = [
     ]),
   ]),
 
-  S('listings section', '', [
+  listings: ({ search = '#search' } = {}) => S('listings section', '', [
     C('wrap', [
-      C('head-row', [C('head-copy', [eyebrow('From our portfolio'), h2("Homes we've <em>listed and sold</em>.")]), B('ghost', 'Search all homes', '#search')]),
+      C('head-row', [C('head-copy', [eyebrow('From our portfolio'), h2("Homes we've <em>listed and sold</em>.")]), B('ghost', 'Search all homes', search)]),
       X('', frag('<div class="cards">')),
       C('foot', [
         T('note', '<p>Shown from the team\'s current portfolio for layout. At launch these pull live from the MLS. Information deemed reliable but not guaranteed.</p>'),
-        T('', '<p><a class="link" href="#search">See every Treasure Coast listing →</a></p>'),
+        T('', `<p><a class="link" href="${search}">See every Treasure Coast listing →</a></p>`),
       ]),
     ]),
   ]),
 
-  S('hoods section sand', 'neighborhoods', [
+  // head: false when the page title band already introduces the towns (Neighborhoods page)
+  hoods: ({ head = true, town = PAGES.neighborhoods } = {}) => S('hoods section sand', 'neighborhoods', [
     C('wrap', [
-      C('head-row', [C('head-copy', [
+      ...(head ? [C('head-row', [C('head-copy', [
         eyebrow('Neighborhoods'),
         h2('Know the coast, <em>town by town</em>.'),
         sub('The Treasure Coast runs from Indian River County down to Palm Beach County. Martin County is our home turf, where every town prices differently, and so do the streets inside it.'),
-      ])]),
+      ])])] : []),
       C('towns', [
         [true, 'nb-sewalls-point', 'Waterfront peninsula', "Sewall's Point", 'Homes between the St. Lucie and Indian rivers, many with deep-water docks.', "Sewall's Point homes for sale →"],
         [true, 'nb-stuart', 'Downtown &amp; riverfront', 'Stuart', 'The Riverwalk, downtown and the St. Lucie River, from condos to estates.', 'Stuart homes for sale →'],
         [false, 'nb-jensen-beach', 'Beach &amp; river', 'Jensen Beach', 'Mainland, waterfront and island markets in one ZIP code.', 'Jensen Beach homes →'],
         [false, 'ls-bicopa', 'West of the river', 'Palm City', 'Gated golf communities, and acreage out in Palm City Farms.', 'Palm City homes →'],
         [false, 'nb-hobe-sound', 'South Martin County', 'Hobe Sound', 'Quiet, green streets a short drive from the beach.', 'Hobe Sound homes →'],
-      ].map(([wide, img, k, name, p, l]) => A(wide ? 'town wide' : 'town', '#', [
+      ].map(([wide, img, k, name, p, l]) => A(wide ? 'town wide' : 'town', town, [
         I('', img), C('t', [H('div', 'k', k), H('h3', '', name), H('p', '', p), H('span', 'link', l)]),
       ]))),
       C('counties', [
@@ -325,7 +355,7 @@ const home = [
     ]),
   ]),
 
-  S('statewide section navy on-dark', 'florida', [
+  statewide: ({ contact = '#contact' } = {}) => S('statewide section navy on-dark', 'florida', [
     C('wrap grid', [
       C('', [
         eyebrow('Your Florida insider'),
@@ -334,7 +364,7 @@ const home = [
         C('referral', [
           H('h3', '', "Buying or selling somewhere we don't cover?"),
           H('p', '', "We work with partner agents throughout Florida. Tell us where you're headed, and we'll connect you with someone we trust, and stay in touch until you're settled."),
-          B('gold', 'Ask for a Florida referral', '#contact'),
+          B('gold', 'Ask for a Florida referral', contact),
         ]),
       ]),
       C('reach', [
@@ -347,13 +377,13 @@ const home = [
     ]),
   ]),
 
-  S('lifestyle section', 'lifestyle', [
+  lifestyle: ({ search = '#search' } = {}) => S('lifestyle section', 'lifestyle', [
     C('wrap', [
       C('head-row', [C('head-copy', [
         eyebrow('Browse by lifestyle'),
         h2('Start with how you <em>want to live</em>.'),
         sub('On the water, by the beach or behind the gate. Pick the way of life first, then narrow it down by town.'),
-      ]), B('ghost', 'Search all homes', '#search')]),
+      ]), B('ghost', 'Search all homes', search)]),
       C('ls-grid', [
         ['lf-waterfront', 'Docks &amp; deep water', 'Waterfront Homes', 'On the St. Lucie, the Indian River and the Intracoastal.'],
         ['lf-condos', 'Low maintenance', 'Condos', 'Lock-and-leave living, from downtown Stuart to the island.'],
@@ -365,7 +395,7 @@ const home = [
     ]),
   ]),
 
-  S('standard section navy on-dark', '', [
+  standard: ({ sell = '#sell', contact = '#contact' } = {}) => S('standard section navy on-dark', '', [
     C('wrap', [
       eyebrow('Why Anne &amp; Sean'),
       h2('Like family, <em>held to a standard</em>.'),
@@ -380,11 +410,11 @@ const home = [
         ['02', 'Annapolis standards', 'A U.S. Naval Academy graduate and seven-year Surface Warfare Officer, Sean brings preparation, integrity and follow-through to every contract.'],
         ['03', "An educator's clarity", 'A former educator, Anne explains every step in plain terms and brings a concierge-level personal touch, plus a professional network of trusted local contacts from first showing to closing.'],
       ].map(([n, t, p]) => C('pillar', [H('div', 'num', n), H('h3', '', t), H('p', '', p)]))),
-      C('cta-row', [B('gold', "What's my home worth?", '#sell'), B('line-light', 'Talk to Anne &amp; Sean', '#contact')]),
+      C('cta-row', [B('gold', "What's my home worth?", sell), B('line-light', 'Talk to Anne &amp; Sean', contact)]),
     ]),
   ]),
 
-  S('reviews section', '', [
+  reviews: () => S('reviews section', 'reviews', [
     C('wrap', [
       eyebrow('Client stories', 'center'),
       H('h2', 'center', 'In their <em>own words</em>.'),
@@ -397,51 +427,103 @@ const home = [
     ]),
   ]),
 
-  S('insights section sand', 'insights', [
+  // posts: [kicker, title, excerpt, url]
+  insights: ({ k = 'Market guides', title = 'Read before you <em>list or buy</em>.', text = 'Written by Anne and Sean about the things that change what a home really costs, street by street.', posts }) => S('insights section sand', 'insights', [
     C('wrap', [
-      C('head-row', [C('head-copy', [
-        eyebrow('Market guides'),
-        h2('Read before you <em>list or buy</em>.'),
-        sub('Written by Anne and Sean about the things that change what a home really costs, street by street.'),
-      ]), B('ghost', 'All market guides', '#')]),
-      C('posts', [
-        ["Sewall's Point · Sellers &amp; buyers", "The Sewer Clock Hiding Inside a South Sewall's Point Listing", "South Sewall's Point is mid-conversion from septic to sewer. Here's how the phase, street, and a 365-day state statute can change what a home actually costs you after closing."],
-        ['Jensen Beach · Pricing', 'Jensen Beach Home Prices Across 3 Distinct Markets', 'Home prices vary across mainland, waterfront and Nettles Island tiers. See what shapes each market before you compare listings.'],
-        ['Palm City Farms · Land', 'Palm City Farms Acreage: What Drives Land Value', "Land value hinges on more than price per acre. Zoning, access, wetlands and septic all affect what you're actually buying."],
-      ].map(([k, t, p]) => A('post', '#', [H('div', 'k', k), H('h3', '', t), H('p', '', p), H('span', 'link', 'Read the guide →')]))),
+      C('head-row', [C('head-copy', [eyebrow(k), h2(title), sub(text)]), B('ghost', 'All market guides', PAGES.insights)]),
+      C('posts', posts.map(([pk, t, p, url]) => A('post', url, [H('div', 'k', pk), H('h3', '', t), H('p', '', p), H('span', 'link', 'Read the guide →')]))),
     ]),
   ]),
 
-  S('faq section', '', [
+  faq: (idx = [0, 1, 2, 3, 4]) => S('faq section', 'faq', [
     C('wrap grid', [
       C('', [eyebrow('Questions'), h2('Straight <em>answers</em>.'), sub("If yours isn't here, call either of us. That's what we're for.")]),
-      X('faq-list', faqHtml),
+      X('faq-list', faqList(idx)),
     ]),
   ]),
 
-  S('cta-band section navy on-dark', '', [
+  ctaBand: ({ sell = '#sell' } = {}) => S('cta-band section navy on-dark', '', [
     C('wrap', [
       eyebrow('Start here', 'center'),
       h2('Selling, buying or just curious? <em>Start with a conversation</em>.'),
       C('row', [
-        B('gold', "What's my home worth?", '#sell'),
+        B('gold', "What's my home worth?", sell),
         B('line-light', 'Call Sean · (772) 486-6883', 'tel:+17724866883'),
         B('line-light', 'Call Anne · (772) 713-7223', 'tel:+17727137223'),
       ]),
     ]),
   ]),
 
-  S('contact section', 'contact', [
+  contact: () => S('contact section', 'contact', [
     C('wrap grid', [
       C('', [eyebrow('Contact'), h2('Visit us in <em>Stuart</em>.'), X('', frag('<div class="info">') + '\n' + liveMap)]),
       X('', frag('<div class="form-card">')),
     ]),
   ]),
+};
+
+// ---------------------------------------------------------------- pages
+const homeGuides = [
+  ["Sewall's Point · Sellers &amp; buyers", "The Sewer Clock Hiding Inside a South Sewall's Point Listing", "South Sewall's Point is mid-conversion from septic to sewer. Here's how the phase, street, and a 365-day state statute can change what a home actually costs you after closing.", guideUrl('the-sewer-clock-hiding-inside-a-south-sewalls-point-listing')],
+  ['Jensen Beach · Pricing', 'Jensen Beach Home Prices Across 3 Distinct Markets', 'Home prices vary across mainland, waterfront and Nettles Island tiers. See what shapes each market before you compare listings.', guideUrl('in-jensen-beach-one-zip-code-is-quietly-running-three-housing-markets')],
+  ['Palm City Farms · Land', 'Palm City Farms Acreage: What Drives Land Value', "Land value hinges on more than price per acre. Zoning, access, wetlands and septic all affect what you're actually buying.", guideUrl('in-palm-city-farms-the-acre-on-the-listing-isnt-the-acre-youre-buying')],
 ];
+const elsewhere = { sell: PAGES.sell, contact: PAGES.contact, search: PAGES.search };
+
+const pages = {
+  home: [
+    sec.hero(), sec.intro(), sec.sell(), sec.listings(), sec.hoods(), sec.statewide(), sec.lifestyle(),
+    sec.standard(), sec.reviews(), sec.insights({ posts: homeGuides }), sec.faq(), sec.ctaBand(), sec.contact(),
+  ],
+
+  // /home-valuation/ (same URL as the Luxury Presence valuation page)
+  sell: [
+    sec.sell({ h1: true }),
+    sec.listings(elsewhere),
+    sec.standard({ contact: PAGES.contact }),
+    sec.reviews(),
+    sec.insights({
+      k: 'Seller guides', title: 'Before you <em>list</em>.', text: 'What we tell sellers before the sign goes up: pricing, preparation, timing, and selling from out of state.',
+      posts: [['Sellers · Strategy', 'sellers-strategy-guide'], ['Sellers · Preparation', 'home-prep-guide'], ['Palm City · Out of state', 'selling-your-palm-city-home-while-living-out-of-state']].map(guideCard),
+    }),
+    sec.faq([0, 2, 4]),
+  ],
+
+  // /team/
+  about: [
+    sec.pageHead('About us', 'Meet Anne &amp; Sean, <em>The Quinn Group</em>.', 'Husband-and-wife real estate agents with Water Pointe Realty Group, based in Stuart and serving Martin, St. Lucie and Palm Beach counties.'),
+    sec.intro(),
+    sec.standard(elsewhere),
+    sec.reviews(),
+    sec.statewide(elsewhere),
+    sec.insights({ posts: homeGuides }),
+  ],
+
+  // /neighborhoods/
+  neighborhoods: [
+    sec.pageHead('Neighborhoods', 'Treasure Coast neighborhoods, <em>town by town</em>.', 'The Treasure Coast runs from Indian River County down to Palm Beach County. Martin County is our home turf, where every town prices differently, and so do the streets inside it.'),
+    sec.hoods({ head: false, town: '#' }),
+    sec.lifestyle(elsewhere),
+    sec.statewide(elsewhere),
+    sec.insights({
+      k: 'Neighborhood guides', title: 'Choosing <em>where to live</em>.', text: 'How the towns compare, written by the two agents who sell in them every week.',
+      posts: [['Stuart · Jensen Beach', 'stuart-vs-jensen-beach-how-to-choose-your-coastal-home-base'], ['Palm City · Gated &amp; golf', 'guide-to-gated-and-golf-communities-in-palm-city'], ['Hutchinson Island · Condos', 'hutchinson-island-condo-buying-guide']].map(guideCard),
+    }),
+    sec.ctaBand(elsewhere),
+  ],
+
+  // /contact-us/ (same URL as the Luxury Presence contact page)
+  contact: [
+    sec.pageHead('Get in touch', 'Talk to <em>Anne &amp; Sean</em>.', 'Call either of us directly, visit the office on SE Ocean Boulevard in Stuart, or send a note below.'),
+    sec.contact(),
+    sec.statewide(),
+    sec.faq(),
+  ],
+};
 
 const header = [C('qg-hf', [X('', headerHtml)])];
 const footer = [C('qg-hf', [X('', footerHtml)])];
-for (const [name, data] of Object.entries({ home, header, footer })) {
+for (const [name, data] of Object.entries({ ...pages, header, footer })) {
   markInner(data);
   fs.writeFileSync(path.join(dist, 'elementor', `${name}.json`), JSON.stringify(data));
 }
