@@ -63,8 +63,8 @@ while (have_posts()) :
 				<div class="eyebrow center">Thinking of selling?</div>
 				<h2>Before we talk price, let's look at <em>your street</em>.</h2>
 				<div class="row">
-					<a href="/#sell" class="btn gold">What's my home worth?</a>
-					<a href="/#contact" class="btn line-light">Talk to Anne &amp; Sean</a>
+					<a href="/home-valuation/" class="btn gold">What's my home worth?</a>
+					<a href="/contact-us/" class="btn line-light">Talk to Anne &amp; Sean</a>
 				</div>
 			</div>
 		</section>

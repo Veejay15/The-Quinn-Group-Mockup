@@ -135,6 +135,43 @@ foreach ([
 	$inner[] = "$key $id " . get_permalink($id);
 }
 
+// Legal pages: plain WordPress pages (editable in the block editor), shown by template-parts/single.php.
+// Like Elementor pages, a page edited in WordPress since the last deploy is left alone unless "force" is passed.
+foreach ([
+	'privacy'       => ['Privacy Policy', 'privacy-policy'],
+	'terms'         => ['Terms of Use', 'terms-and-conditions'],
+	'accessibility' => ['Accessibility Statement', 'accessibility'],
+] as $key => [$title, $slug]) {
+	$id = qg_find('_qg_key', $key, 'page');
+	if (!$id) {
+		// WordPress ships a draft "Privacy Policy" page that holds the slug; take it over instead of making privacy-policy-2.
+		$draft = get_page_by_path($slug, OBJECT, 'page');
+		if ($draft && $draft->post_status === 'draft') {
+			$id = $draft->ID;
+			update_post_meta($id, '_qg_key', $key);
+		}
+	}
+	$hash = $id ? get_post_meta($id, '_qg_content_hash', true) : '';
+	if ($hash && !$force && $hash !== md5(get_post_field('post_content', $id))) {
+		WP_CLI::warning("'$key' (page $id) was edited in WordPress since the last deploy. Not overwriting; rerun with 'force' to replace it.");
+		continue;
+	}
+	$post = [
+		'post_type' => 'page', 'post_title' => $title, 'post_name' => $slug, 'post_status' => 'publish',
+		'post_content' => file_get_contents("$base/legal/$slug.html"), 'comment_status' => 'closed', 'ping_status' => 'closed',
+	];
+	if ($id) {
+		$post['ID'] = $id;
+		wp_update_post(wp_slash($post));
+	} else {
+		$id = wp_insert_post(wp_slash($post));
+		update_post_meta($id, '_qg_key', $key);
+	}
+	update_post_meta($id, '_qg_content_hash', md5(get_post_field('post_content', $id)));
+	$inner[] = "$key $id " . get_permalink($id);
+}
+update_option('wp_page_for_privacy_policy', qg_find('_qg_key', 'privacy', 'page'));
+
 // ---- WordPress sample content
 foreach ([1 => 'Hello world!', 2 => 'Sample Page', 6 => 'Elementor #6'] as $id => $title) {
 	$p = get_post($id);

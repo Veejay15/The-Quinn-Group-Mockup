@@ -178,6 +178,7 @@ for (const m of html.matchAll(/src="img\/([\w-]+)\.(jpg|png)"[^>]*?alt="([^"]*)"
 fs.writeFileSync(path.join(dist, 'media-manifest.json'), JSON.stringify(manifest, null, 1));
 fs.copyFileSync(path.join(here, 'install.php'), path.join(dist, 'install.php'));
 fs.copyFileSync(path.join(here, 'yoast.php'), path.join(dist, 'yoast.php'));
+fs.cpSync(path.join(here, 'legal'), path.join(dist, 'legal'), { recursive: true });
 fs.mkdirSync(path.join(dist, 'migrate'), { recursive: true });
 for (const f of ['import-blog.php', 'blog.json']) {
   if (fs.existsSync(path.join(here, 'migrate', f))) fs.copyFileSync(path.join(here, 'migrate', f), path.join(dist, 'migrate', f));
@@ -215,6 +216,9 @@ const PAGES = { sell: '/home-valuation/', neighborhoods: '/neighborhoods/', abou
 const siteLinks = h => h.replace(/href="#" class="logo"/g, 'href="/" class="logo"')
   .replace('<a href="#">Client stories</a>', '<a href="/about/#reviews">Client stories</a>')
   .replace('<a href="#insights">Seller\'s guide</a>', '<a href="/blog/sellers-strategy-guide/">Seller\'s guide</a>')
+  .replace('<a href="#">Privacy Policy</a>', '<a href="/privacy-policy/">Privacy Policy</a>')
+  .replace('<a href="#">Terms</a>', '<a href="/terms-and-conditions/">Terms</a>')
+  .replace('<a href="#">Accessibility</a>', '<a href="/accessibility/">Accessibility</a>')
   .replace(/href="#([a-z]+)"/g, (m, id) => `href="${PAGES[id] || '/#' + id}"`);
 
 const placesHtml = []; { let from = 0; for (let i = 0; i < 3; i++) { const g = grab('<div class="places">', from); placesHtml.push(g.text); from = g.end; } }

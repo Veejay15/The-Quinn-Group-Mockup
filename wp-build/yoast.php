@@ -60,6 +60,9 @@ foreach ([
 	'about'         => ['Meet Anne Warner & Sean Quinn | The Quinn Group, Stuart FL', 'Anne Warner and Sean Quinn of The Quinn Group, Water Pointe Realty Group: a former educator and a U.S. Naval Academy graduate who treat Treasure Coast clients like family.', 'Anne Warner Sean Quinn realtors'],
 	'neighborhoods' => ['Treasure Coast Neighborhoods, Town by Town | The Quinn Group', "Sewall's Point, Stuart, Jensen Beach, Palm City and Hobe Sound, plus St. Lucie and Palm Beach counties: how each Treasure Coast town lives and prices, from Anne & Sean.", 'Treasure Coast neighborhoods'],
 	'contact'       => ['Contact Anne & Sean | The Quinn Group, Stuart, FL Realtors', 'Call Sean at (772) 486-6883 or Anne at (772) 713-7223, visit us at 3727 SE Ocean Blvd, Suite 100, Stuart, FL 34996, or send a message.', 'contact Stuart FL realtor'],
+	'privacy'       => ['Privacy Policy | Anne & Sean, The Quinn Group', 'How Anne & Sean, The Quinn Group, collect, use and protect your personal information, including text messaging terms and your privacy choices.', ''],
+	'terms'         => ['Terms of Use | Anne & Sean, The Quinn Group', 'The terms that govern use of myfloridainsider.com, including MLS listing data, home value estimates and fair housing.', ''],
+	'accessibility' => ['Accessibility Statement | Anne & Sean, The Quinn Group', 'Our commitment to an accessible website for everyone, and how to reach Anne & Sean if any part of the site is hard to use.', ''],
 ] as $key => [$title, $desc, $kw]) {
 	$ids = get_posts(['post_type' => 'page', 'meta_key' => '_qg_key', 'meta_value' => $key, 'numberposts' => 1, 'fields' => 'ids']);
 	if (!$ids) {
